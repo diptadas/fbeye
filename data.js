@@ -11,6 +11,16 @@ dummyData =
       "tags": [
         "Michael Johnson",
         "Chris Lee"
+      ],
+      "image-tags": [
+        "sky",
+        "sun",
+        "flower"
+      ],
+      "keywords": [
+        "red",
+        "ball",
+        "toy"
       ]
     },
     {
@@ -23,6 +33,16 @@ dummyData =
       "tags": [
         "David Jones",
         "Chris Lee"
+      ],
+      "image-tags": [
+        "forest",
+        "river",
+        "water"
+      ],
+      "keywords": [
+        "green",
+        "freedom",
+        "fresh"
       ]
     }
   ],
