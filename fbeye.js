@@ -1,34 +1,31 @@
 $(document).ready(function () {
-    console.log("ready");
-    $("#tab1").show();
-    $("#tab2").hide();
-    $("#tab3").hide();
+    hideAllTabs();
+    $("#summary-tab").show();
 });
 
-$("#tab1-btn").click(function () {
-    $("#tab1").show();
-    $("#tab2").hide();
-    $("#tab3").hide();
+$("#summary-tab-btn").click(function () {
+    hideAllTabs();
+    $("#summary-tab").show();
 });
 
-$("#tab2-btn").click(function () {
-    $("#tab1").hide();
-    $("#tab2").show();
-    $("#tab3").hide();
-    loadNewFeed();
-    loadPostContent("3407441709301226_3378085995570131");
+$("#feed-tab-btn").click(function () {
+    hideAllTabs();
+    $("#feed-tab").show();
 });
 
-$("#tab3-btn").click(function () {
-    $("#tab1").hide();
-    $("#tab2").hide();
-    $("#tab3").show();
+$("#post-tab-btn").click(function () {
+    hideAllTabs();
+    $("#post-tab").show();
 });
+
+function hideAllTabs() {
+    $(".tab").hide();
+}
 
 //================================================
 // Post button action
 //------------------------------------------------
 $("#post-button").click(function(){
     var postText = $("#post-text-field").val();
-    postButtonClicked();
+    postButtonClicked(postText);
 });

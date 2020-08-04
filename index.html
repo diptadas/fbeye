@@ -15,23 +15,24 @@
     <div class="container">
         <div class="pure-g tab-bar">
             <div class="pure-u-1-3">
-                <button class="pure-button" id="tab1-btn"><i class="fas fa-phone-square-alt"></i> Summary</button>
+                <button class="pure-button" id="summary-tab-btn"><i class="fas fa-phone-square-alt"></i>
+                    Summary</button>
             </div>
             <div class="pure-u-1-3">
-                <button class="pure-button" id="tab2-btn"><i class="fas fa-address-book"></i> News Feed</button>
+                <button class="pure-button" id="feed-tab-btn"><i class="fas fa-address-book"></i> News Feed</button>
             </div>
             <div class="pure-u-1-3">
-                <button class="pure-button" id="tab3-btn"><i class="fas fa-user-plus"></i> Post</button>
+                <button class="pure-button" id="post-tab-btn"><i class="fas fa-user-plus"></i> Post</button>
             </div>
         </div>
 
         <div class="tab-content">
 
-            <div id="tab1" class="tab1">
+            <div id="summary-tab" class="tab">
                 <h1>Summary</h1>
 
                 <!-- The JS SDK Login Button -->
-                <fb:login-button id="login-btn" scope="public_profile,email" onlogin="checkLoginState();">
+                <fb:login-button id="login-btn" scope="public_profile,email,user_posts" onlogin="checkLoginState();">
                 </fb:login-button>
 
                 <div id="status">
@@ -39,15 +40,14 @@
 
             </div>
 
-            <div id="tab2" class="tab2">
+            <div id="feed-tab" class="tab">
                 <h1>News Feed</h1>
             </div>
 
-            <div id="tab3" class="tab3">
+            <div id="post-tab" class="tab">
                 <h1>Post</h1>
-                <input type="text" id="post-text-field"></br>
+                <input type="text" id="post-text-field"></br></br>
                 <input id="post-button" type="button" value="Post">
-
             </div>
         </div>
     </div>

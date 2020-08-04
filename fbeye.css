@@ -34,60 +34,6 @@
     align-items: center;
 }
 
-.tab1 {
+.tab {
     width: 100%;
-}
-
-.tab2 {
-    width: 100%;
-}
-
-.tab3 {
-    width: 100%;
-}
-
-#dial-value {
-    width: 94%;
-}
-
-.button-digit {
-    border-radius: 4px;
-    padding: 10px;
-    width: 80%;
-}
-
-.button-action {
-    border-radius: 4px;
-    padding: 10px;
-    width: 86%;
-}
-
-#contact-search {
-    width: 94%;
-}
-
-.contact-list-btn {
-    width: 94%;
-}
-
-#contact-list {
-    list-style-type: none;
-    overflow: scroll;
-    height: 250px;
-    padding: 0;
-    margin: 10px;
-}
-
-#contact-list li a {
-    border: 1px solid #ddd;
-    background-color: #f6f6f6;
-    padding: 10px;
-    margin: 2px;
-    text-decoration: none;
-    color: black;
-    display: block;
-}
-
-#contact-list li a:hover:not(.header) {
-    background-color: #eee;
 }
