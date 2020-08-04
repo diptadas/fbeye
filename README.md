@@ -1,2 +1,2 @@
 # fbeye
-Facebook for visually impaired peoples
+Facebook for visually impaired people
