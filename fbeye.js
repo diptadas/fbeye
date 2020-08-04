@@ -27,5 +27,5 @@ function hideAllTabs() {
 //------------------------------------------------
 $("#post-button").click(function(){
     var postText = $("#post-text-field").val();
-    postButtonClicked(postText);
+    createPost(postText);
 });

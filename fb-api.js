@@ -39,26 +39,28 @@ function checkLoginState() {               // Called when a person is finished w
     });
 }
 
-function postButtonClicked(postText) {
-    console.log(postText);
+function createPost(postText) {
+    console.log('posting ' + postText);
 
-    FB.api('/me/feed', 'post', { message: body }, function(response) {
-        if (!response || response.error) {
-          alert('Error occurred');
-        } else {
-          alert('Post ID: ' + response.id);
-        }
+    FB.api('/me/feed', 'post', { message: postText }, function(response) {
+            if (response && !response.error) {
+                console.log('Post ID: ' + response.id);
+            } else {
+                console.error(response.error);
+            }
       });
 }
 
-function loadNewFeed() {
+function loadNewsFeed() {
     console.log('loading news feed');
     FB.api(
         "/me/feed",
         function (response) {
-          if (response && !response.error) {
-            console.log(response);
-          }
+            if (response && !response.error) {
+                console.log(response);
+            } else {
+                console.error(response.error);
+            }
         }
     );
 }
@@ -68,9 +70,11 @@ function loadPostContent(id) {
     FB.api(
         "/" + id,
         function (response) {
-          if (response && !response.error) {
-            console.log(response);
-          }
+            if (response && !response.error) {
+                console.log(response);
+            } else {
+                console.error(response.error);
+            }
         }
     );
 }
