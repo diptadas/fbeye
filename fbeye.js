@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    hideAllTabs();
-    $("#summary-tab").show();
+    $("#summary-tab-btn").click();
 });
 
 $("#summary-tab-btn").click(function () {
