@@ -72,3 +72,23 @@ function testAPI() {                      // Testing Graph API after login.  See
             'Thanks for logging in, ' + response.name + '!';
     });
 }
+
+//================================================
+//Post button action
+//------------------------------------------------
+$("#post-button").click(function(){
+    postButtonClicked();
+});
+
+function postButtonClicked() {
+    var postText = $("#post-text-field").val();
+    console.log(postText);
+
+    FB.api('/me/feed', 'post', { message: body }, function(response) {
+        if (!response || response.error) {
+          alert('Error occured');
+        } else {
+          alert('Post ID: ' + response.id);
+        }
+      });
+}
