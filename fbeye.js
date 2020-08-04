@@ -33,10 +33,8 @@ function statusChangeCallback(response) {  // Called with the results from FB.ge
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
     if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-        $("#login-btn").hide();             // hide login button
         testAPI();
     } else {                                 // Not logged into your webpage or we are unable to tell.
-        $("#login-btn").show();             // show login button
         document.getElementById('status').innerHTML = 'Please log ' +
             'into this webpage.';
     }
@@ -84,7 +82,7 @@ function postButtonClicked() {
     var postText = $("#post-text-field").val();
     console.log(postText);
 
-    FB.api('/me/feed', 'post', { message: body }, function(response) {
+    FB.api('/me/feed', 'post', { message: postText }, function(response) {
         if (!response || response.error) {
           alert('Error occured');
         } else {
