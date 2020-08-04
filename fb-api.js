@@ -50,8 +50,8 @@ function createPost(postText) {
       });
 }
 
-function loadNewsFeed() {
-    console.log('loading news feed');
+function loadMyFeed() {
+    console.log('loading my feeds');
     FB.api(
         "/me/feed",
         function (response) {

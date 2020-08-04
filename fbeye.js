@@ -7,9 +7,16 @@ $("#summary-tab-btn").click(function () {
     $("#summary-tab").show();
 });
 
+$("#timeline-tab-btn").click(function () {
+    hideAllTabs();
+    $("#timeline-tab").show();
+    loadMyFeed();
+});
+
 $("#feed-tab-btn").click(function () {
     hideAllTabs();
     $("#feed-tab").show();
+    loadNewsFeed();
 });
 
 $("#post-tab-btn").click(function () {
