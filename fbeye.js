@@ -1,10 +1,32 @@
+currentTab =0;
 $(document).ready(function () {
     $("#summary-tab-btn").click();
+    currentTab=0;
 });
+
+tabOrder = ["#summary-tab-btn","#timeline-tab-btn","#feed-tab-btn","#post-tab-btn"];
+
+tabcount = 4;
+
+$(document).keydown(function(event) {
+    console.log(event.key);
+    if(event.key == "ArrowRight"){
+        currentTab = (currentTab+1)%tabcount;
+        console.log(currentTab);
+        $(tabOrder[currentTab]).click();
+    }else if(event.key == "ArrowLeft"){
+        currentTab = (currentTab-1)%tabcount;
+        console.log(currentTab);
+        $(tabOrder[currentTab]).click();
+    }
+    
+});
+
 
 $("#summary-tab-btn").click(function () {
     resetTabs();
     $("#summary-tab").show();
+    read("summary");
     selectedTab = tabOptions.SUMMARY;
     contentIndexOfIndividualTab = 0;
 });
@@ -12,6 +34,7 @@ $("#summary-tab-btn").click(function () {
 $("#timeline-tab-btn").click(function () {
     resetTabs();
     $("#timeline-tab").show();
+    read("timeline")
     loadMyFeed();
     selectedTab = tabOptions.TIMELINE;
     contentIndexOfIndividualTab = 0;
