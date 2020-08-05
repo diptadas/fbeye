@@ -51,34 +51,36 @@ function hideAllTabs() {
     $(".tab").hide();
 }
 
-// sound and beep
-var sound = true;
+
 
 function read(msg) {
-	if(sound) {
+	
+        window.speechSynthesis.cancel();
 		window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
-	}
 }
 
+function readWithWait(msg){
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
+}
+
+
 function beep() {
-	if(sound) {
-		new Audio('http://www.soundjay.com/button/beep-07.wav').play();
-	}	
+
+		new Audio('http://www.soundjay.com/button/beep-07.wav').play();	
 }
 
 //================================================
 // Post button action
 //------------------------------------------------
 $("#post-button").click(function(){
-    read($("#post-text-field").val());
+    readWithWait($("#post-text-field").val());
     var postText = $("#post-text-field").val();
-    read("A post is uploading");
+    readWithWait("Your post is uploading");
+    
     $("#post-text-field").val(null);
     setTimeout(function(){
             beep();
-            read("A Post has been uploaded successfully");
-        }, 4000);
-
-    
+            readWithWait("Your Post has been uploaded successfully");
+        }, 4000);    
     
 });
