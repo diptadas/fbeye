@@ -6,6 +6,7 @@ const tabOptions = {
     POST: 4
 
 }
+var flag = false;
 var selectedTab = tabOptions.SUMMARY;
 var contentIndexOfIndividualTab = 0;
 
@@ -126,7 +127,7 @@ $(document).keypress(function(e) {
     } else if (e.key == "R" || e.key == "r") {
         repeatOptions();
         console.log("R Pressed");
-    } else if (e.key == "C" || e.key == "c") {
+    } else if (flag == false && (e.key == "C" || e.key == "c")) {
         makeComment();
         console.log("C Pressed");
     } else if (e.key == "A" || e.key == "a"){
@@ -135,6 +136,7 @@ $(document).keypress(function(e) {
         isCommentSectionSelected != isCommentSectionSelected;
     }
 });
+
 
 function likePost() {
     var postLike = "You have successfully liked this post";
@@ -147,26 +149,33 @@ function repeatOptions() {
 
 function makeComment() {
     //var postComment = "You have successfully made a ";
+    cancelRead();
+    $("#comment-text-field").focus();
+    flag = true;
+    read("Write a comment and press enter to upload");
+    $("#comment-text-field").keypress(function(event) {
+        console.log(flag);
+        if(flag == true){
+            if(event.key == "Enter"){
+                $("#comment-button").click();
+            }else{
+                read(event.key);
+            }
+        }
+    });
 }
 
 function readAllComments() {
 
 }
 
-$("#comment-text-field").keypress(function(event) {
-    if(event.key == "Enter"){
-        $("#post-button").click();
-    }else{
-        read(event.key);
-    }
-});
 
 $("#comment-button").click(function(){
     read($("#comment-text-field").val());
     var postText = $("#comment-text-field").val();
     read("Your comment is uploading");
-    
     $("#comment-text-field").val(null);
+    $("#comment-text-field").blur();
     setTimeout(function(){
             beep();
             read("Your comment has been uploaded successfully");

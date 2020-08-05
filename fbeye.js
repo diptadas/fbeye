@@ -42,6 +42,7 @@ $("#timeline-tab-btn").click(function () {
 
 $("#feed-tab-btn").click(function () {
     resetTabs();
+    flag = false;
     $("#feed-tab").show();
     read("News feed");
     loadNewsFeed();
