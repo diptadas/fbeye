@@ -24,7 +24,7 @@ $(document).keydown(function(event) {
         console.log(currentTab);
         $(tabOrder[currentTab]).click();
     }else if(event.key == "ArrowLeft"){
-        currentTab = (currentTab-1)%tabCount;
+        currentTab = (currentTab-1+tabCount)%tabCount;
         console.log(currentTab);
         $(tabOrder[currentTab]).click();
     }
