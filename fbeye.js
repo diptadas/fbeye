@@ -43,7 +43,7 @@ $("#timeline-tab-btn").click(function () {
     resetTabs();
     $("#timeline-tab").show();
     read("timeline")
-    loadMyFeed();
+    loadTimeline();
     selectedTab = tabOptions.TIMELINE;
 });
 
