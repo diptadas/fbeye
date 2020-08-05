@@ -3,14 +3,14 @@ $(document).ready(function () {
 });
 
 $("#summary-tab-btn").click(function () {
-    hideAllTabs();
+    resetTabs();
     $("#summary-tab").show();
     selectedTab = tabOptions.SUMMARY;
     contentIndexOfIndividualTab = 0;
 });
 
 $("#timeline-tab-btn").click(function () {
-    hideAllTabs();
+    resetTabs();
     $("#timeline-tab").show();
     loadMyFeed();
     selectedTab = tabOptions.TIMELINE;
@@ -18,7 +18,7 @@ $("#timeline-tab-btn").click(function () {
 });
 
 $("#feed-tab-btn").click(function () {
-    hideAllTabs();
+    resetTabs();
     $("#feed-tab").show();
     read("News feed");
     loadNewsFeed();
@@ -27,7 +27,7 @@ $("#feed-tab-btn").click(function () {
 });
 
 $("#post-tab-btn").click(function () {
-    hideAllTabs();
+    resetTabs();
     $("#post-tab").show();
     read("Post");
     selectedTab = tabOptions.POST;
@@ -47,22 +47,18 @@ $("#post-text-field").keypress(function(event) {
 });
 
 
-function hideAllTabs() {
+function resetTabs() {
     $(".tab").hide();
+    cancelRead();
 }
-
-
 
 function read(msg) {
-	
-        window.speechSynthesis.cancel();
-		window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
+	window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
 }
 
-function readWithWait(msg){
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
+function cancelRead() {
+    window.speechSynthesis.cancel();
 }
-
 
 function beep() {
 
@@ -73,14 +69,14 @@ function beep() {
 // Post button action
 //------------------------------------------------
 $("#post-button").click(function(){
-    readWithWait($("#post-text-field").val());
+    read($("#post-text-field").val());
     var postText = $("#post-text-field").val();
-    readWithWait("Your post is uploading");
+    read("Your post is uploading");
     
     $("#post-text-field").val(null);
     setTimeout(function(){
             beep();
-            readWithWait("Your Post has been uploaded successfully");
+            read("Your Post has been uploaded successfully");
         }, 4000);    
     
 });
