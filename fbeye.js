@@ -75,12 +75,12 @@ function beep() {
 $("#post-button").click(function(){
     readWithWait($("#post-text-field").val());
     var postText = $("#post-text-field").val();
-    readWithWait("A post is uploading");
+    readWithWait("Your post is uploading");
     
     $("#post-text-field").val(null);
     setTimeout(function(){
             beep();
-            readWithWait("A Post has been uploaded successfully");
+            readWithWait("Your Post has been uploaded successfully");
         }, 4000);    
     
 });
