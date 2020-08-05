@@ -59,28 +59,26 @@ function loadMyFeeds() {
 
 function processMyFeedResponse(response) {
     for (var key of Object.keys(response.data)) {
-        myFeeds[key] = [];
+        var postContent = [];
 
-        myFeeds[key].id = response.data[key].id;
-        myFeeds[key].name = loginName;
-        myFeeds[key].imageLabels = ["red", "green", "blue"]; // dummy data
+        postContent.id = response.data[key].id;
+        postContent.name = loginName;
+        postContent.imageLabels = ["red", "green", "blue"]; // dummy data
 
         if(response.data[key].message) {
-            myFeeds[key].text = response.data[key].message;
+            postContent.text = response.data[key].message;
         }
 
         if(response.data[key].attachments){
             var attachments = response.data[key].attachments;
             if(attachments.data[0].media && attachments.data[0].media.image) {
-                myFeeds[key].image = attachments.data[0].media.image.src;
+                postContent.image = attachments.data[0].media.image.src;
             }
-        }        
-    }
-
-    // clean up live data - remove empty posts
-    for (var key of Object.keys(myFeeds)) {
-        if(!myFeeds[key].text || !myFeeds[key].image) {
-            delete myFeeds[key];
+        }
+        
+        // clean up live data - do not include empty posts
+        if(postContent.text && postContent.image) {
+            myFeeds.push(postContent);
         }
     }
 
