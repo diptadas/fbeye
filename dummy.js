@@ -10,18 +10,21 @@ var selectedTab = tabOptions.SUMMARY;
 var contentIndexOfIndividualTab = 0;
 
 var commentIndex = 0;
-var isCommentSectionSelected = false;
+var isCommentSectionSelected = 0;
 
 function loadNewsFeed() {
     
-    console.log('loading news feeds');
-    console.log(dummyData.feeds[0].text);
-
-    
-
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
-        readOutFeedContent();
-        optionReader();
+
+        if(isCommentSectionSelected) {
+            console.log("COME");
+            readOutCommentContent();
+        } else {
+            console.log("COME POST");
+            readOutFeedContent();
+            optionReader();
+        }
+        
     }
 }
 
@@ -39,7 +42,18 @@ $(document).keydown(function(e) {
         }
         contentIndexOfIndividualTab %= dummyData.feeds.length;
 
-        isCommentSectionSelected ? readOutCommentContent() : readOutFeedContent();
+        commentIndex -= 1;
+        if(commentIndex < 0) {
+            commentIndex = 0;
+        }
+        commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
+
+
+        if(isCommentSectionSelected) {
+            readOutCommentContent();
+        } else {
+            readOutFeedContent();
+        }
     }
 
     else if (e.keyCode == '40') {
@@ -49,14 +63,14 @@ $(document).keydown(function(e) {
         contentIndexOfIndividualTab += 1;
         contentIndexOfIndividualTab %= dummyData.feeds.length;
 
-        
-        commentIndex -= 1;
-        if(commentIndex < 0) {
-            commentIndex = 0;
-        }
-        commentIndex %= dummyData.feeds.comments.length;
+        commentIndex += 1;
+        commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
 
-        isCommentSectionSelected ? readOutCommentContent() : readOutFeedContent();
+        if(isCommentSectionSelected) {
+            readOutCommentContent();
+        } else {
+            readOutFeedContent();
+        }
     }
 });
 
@@ -74,26 +88,20 @@ function readOutFeedContent(){
         imageContent = imageContent + " " + dummyData.feeds[contentIndexOfIndividualTab].imageLabels[i];
     }
 
-    read("There is an image here which might contains " + imageContent);
+    read("There is an image here which might contain " + imageContent);
 
     
 }
 
 function readOutCommentContent(){
 
-    $("#feed-name").text(dummyData.feeds[contentIndexOfIndividualTab].name);
-    $("#feed-text").text(dummyData.feeds[contentIndexOfIndividualTab].text);
-    $("#feed-image").attr("src",dummyData.feeds[contentIndexOfIndividualTab].image);
+    console.log("COME HERE");
+    console.log(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
+    $("#feed-comment").text(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
+    
 
-    read("This is a post from" + dummyData.feeds[contentIndexOfIndividualTab].name);
-    read(dummyData.feeds[contentIndexOfIndividualTab].text);
-
-    var imageContent = "";
-    for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
-        imageContent = imageContent + " " + dummyData.feeds[contentIndexOfIndividualTab].imageLabels[i];
-    }
-
-    read("There is an image here which might contains " + imageContent);
+    read("This is a comment from" + dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].name);
+    read(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
 
     
 }
@@ -105,21 +113,21 @@ function optionReader() {
     var postEndLikeCommand = "Press L for liking this post";
     var postEndCommentCommand = "Press C for making comment in this post";
     var postEndRepeatCommand = "Press R for repeating the options";
-    var postEndCommentCommand = "Press A for reading all the comments";
+    var postEndReadCommentCommand = "Press A for reading all the comments";
 
     read(postEndDownCommand);
     read(postEndUpCommand);
     read(postEndLikeCommand);
     read(postEndCommentCommand);
+    read(postEndReadCommentCommand);
     read(postEndRepeatCommand);
-    read(postEndCommentCommand);
+    
 
 }
 
 
 $(document).keypress(function(e) {
 
-    console.log("CHECK");
     if (e.key == "L" || e.key == 'l') {
         likePost();
         console.log("L Pressed");
@@ -130,9 +138,10 @@ $(document).keypress(function(e) {
         makeComment();
         console.log("C Pressed");
     } else if (e.key == "A" || e.key == "a"){
+        isCommentSectionSelected = 1;
         readAllComments();
         console.log("A Pressed");
-        isCommentSectionSelected != isCommentSectionSelected;
+        
     }
 });
 
@@ -146,11 +155,22 @@ function repeatOptions() {
 }
 
 function makeComment() {
-    //var postComment = "You have successfully made a ";
+    
 }
 
 function readAllComments() {
 
+    var postEndCommentEnterCommand = "Now you have entered in comment section";
+    var postEndDownCommentCommand = "Press down arrow for hearing the next comment of this post";
+    var postEndUpCommentCommand = "Press up arrow for hearing the previous comment of this post";
+    var postEndCommentFinish = "Press A again for going back to post section";
+
+    read(postEndCommentEnterCommand);
+    read(postEndDownCommentCommand);
+    read(postEndUpCommentCommand);
+    read(postEndCommentFinish);
+
+    loadNewsFeed();
 }
 
 $("#comment-text-field").keypress(function(event) {
