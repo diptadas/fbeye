@@ -28,6 +28,7 @@ $(document).keydown(function(e) {
 
     if (e.keyCode == '38') {
         console.log("UP");
+        cancelRead();
 
         contentIndexOfIndividualTab -= 1;
         if(contentIndexOfIndividualTab < 0) {
@@ -40,8 +41,8 @@ $(document).keydown(function(e) {
     }
 
     else if (e.keyCode == '40') {
-        
         console.log("DOWN");
+        cancelRead();
 
         contentIndexOfIndividualTab += 1;
         contentIndexOfIndividualTab %= dummyData.feeds.length;
