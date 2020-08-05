@@ -12,6 +12,17 @@ dummyData =
         "Michael Johnson",
         "Chris Lee"
       ],
+      "comments": [
+        {
+          "name": "Michael Johnson",
+          "text": "I like red color."
+        },
+        {
+          "name": "Chris Lee",
+          "text": "Childhood memories."
+        }
+      ],
+      "likes": 15,
       "image-tags": [
         "sky",
         "sun",
@@ -34,6 +45,17 @@ dummyData =
         "David Jones",
         "Chris Lee"
       ],
+      "comments": [
+        {
+          "name": "David Jones",
+          "text": "My chair is broken."
+        },
+        {
+          "name": "Chris Lee",
+          "text": "I like to sit on my grandfather's chair."
+        }
+      ],
+      "likes": 25,
       "image-tags": [
         "forest",
         "river",
