@@ -11,18 +11,23 @@ var contentIndexOfIndividualTab = 0;
 
 var commentIndex = 0;
 var isCommentSectionSelected = 0;
+var alreadyReadOutOtions = 0;
 
 function loadNewsFeed() {
     
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
 
         if(isCommentSectionSelected) {
-            console.log("COME");
+            
             readOutCommentContent();
+
         } else {
-            console.log("COME POST");
+            
             readOutFeedContent();
-            optionReader();
+            if(!alreadyReadOutOtions) {
+                optionReader();
+            }
+           
         }
         
     }
@@ -95,18 +100,19 @@ function readOutFeedContent(){
 
 function readOutCommentContent(){
 
-    console.log("COME HERE");
-    console.log(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
-    $("#feed-comment").text(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
+    var comment = dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex];
+    $("#feed-comment").text(comment.name + ": " + comment.text);
     
 
-    read("This is a comment from" + dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].name);
+    read("This is a comment from" + comment.name);
     read(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
 
     
 }
 
 function optionReader() {
+
+    alreadyReadOutOtions = 1;
 
     var postEndDownCommand = "Press down arrow for hearing the next content in this tab";
     var postEndUpCommand = "Press up arrow for hearing the previous content in this tab";
@@ -138,8 +144,15 @@ $(document).keypress(function(e) {
         makeComment();
         console.log("C Pressed");
     } else if (e.key == "A" || e.key == "a"){
-        isCommentSectionSelected = 1;
-        readAllComments();
+        if(isCommentSectionSelected){
+            read("Now you are back again in post section");
+            isCommentSectionSelected = 0;
+        } else {
+            readAllCommentsOptions();
+            isCommentSectionSelected = 1;
+        }
+        
+        loadNewsFeed();
         console.log("A Pressed");
         
     }
@@ -158,7 +171,7 @@ function makeComment() {
     
 }
 
-function readAllComments() {
+function readAllCommentsOptions() {
 
     var postEndCommentEnterCommand = "Now you have entered in comment section";
     var postEndDownCommentCommand = "Press down arrow for hearing the next comment of this post";
@@ -170,7 +183,6 @@ function readAllComments() {
     read(postEndUpCommentCommand);
     read(postEndCommentFinish);
 
-    loadNewsFeed();
 }
 
 $("#comment-text-field").keypress(function(event) {
