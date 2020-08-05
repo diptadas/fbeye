@@ -6,17 +6,12 @@ function loadNewsFeed() {
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
 
         if(isCommentSectionSelected) {
-            
             readOutCommentContent();
-
         } else {
-            
             readOutFeedContent();
-
             if(!alreadyReadOutOptions) {
                 postOptionReader();
             }
-           
         }
     }
 }
@@ -25,7 +20,10 @@ function loadNewsFeed() {
 // up and down key press handler
 // ----------------------------------------
 
-$(document).keydown(function(e) { 
+$(document).keydown(function(e) {
+    if(selectedTab != tabOptions.NEWSFEED) {
+        return;
+    } 
 
     console.log(selectedTab);
 

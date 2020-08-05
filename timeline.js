@@ -20,10 +20,13 @@ function loadTimeline() {
 // up and down key press handler
 // ----------------------------------------
 
-$(document).keydown(function(e) { 
+$(document).keydown(function(e) {
+    if(selectedTab != tabOptions.TIMELINE) {
+        return;
+    } 
 
     console.log(selectedTab);
-
+    
     if (e.keyCode == '38') {
         console.log("UP");
         cancelRead();
