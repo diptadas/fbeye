@@ -37,3 +37,13 @@
 .tab {
     width: 100%;
 }
+
+
+.feedObject{
+    text-align: justify;
+    align-content: center;
+}
+
+.postImage{
+    width: 50%;
+}

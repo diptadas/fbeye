@@ -12,12 +12,26 @@ function loadNewsFeed() {
     console.log('loading news feeds');
     console.log(dummyData.feeds[0].text);
 
-    for(var i = 0; i < dummyData.feeds.length; i++) {
-        var newNodeContainer = "<div class='feedObject'><b>" + dummyData.feeds[i].text + "<br><br>";
+    /*
+    if (contentIndexOfIndividualTab < dummyData.feeds.length) {
+        
 
-        var imageContainer = "<img width=100px height=100px src=\"" + dummyData.feeds[i].image;
+        var newNodeContainer = "<div class='feedObject'><b>" + dummyData.feeds[contentIndexOfIndividualTab].text + "<br><br>";
+
+        var imageContainer = "<img class='postImage' width='200px' height='200px' src=\"" + dummyData.feeds[contentIndexOfIndividualTab].image;
 
         var divClose = "\"</img></div>";
         $('#feed-tab').append(newNodeContainer + imageContainer + divClose);
-      }
+
+        contentIndexOfIndividualTab += 1;
+    }
+    */
+
+
+
+    $("#feed-text").text(dummyData.feeds[contentIndexOfIndividualTab].text);
+    $("#feed-image").attr("src",dummyData.feeds[contentIndexOfIndividualTab].image);
+    contentIndexOfIndividualTab += 1;
+
+    contentIndexOfIndividualTab %= dummyData.feeds.length;
 }
