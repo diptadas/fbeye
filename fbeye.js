@@ -28,7 +28,6 @@ $("#summary-tab-btn").click(function () {
     $("#summary-tab").show();
     read("summary");
     selectedTab = tabOptions.SUMMARY;
-    contentIndexOfIndividualTab = 0;
 });
 
 $("#timeline-tab-btn").click(function () {
@@ -37,7 +36,6 @@ $("#timeline-tab-btn").click(function () {
     read("timeline")
     loadMyFeed();
     selectedTab = tabOptions.TIMELINE;
-    contentIndexOfIndividualTab = 0;
 });
 
 $("#feed-tab-btn").click(function () {
@@ -47,7 +45,6 @@ $("#feed-tab-btn").click(function () {
     read("News feed");
     loadNewsFeed();
     selectedTab = tabOptions.NEWSFEED;
-    contentIndexOfIndividualTab = 0;
 });
 
 $("#post-tab-btn").click(function () {
@@ -55,7 +52,6 @@ $("#post-tab-btn").click(function () {
     $("#post-tab").show();
     read("Post");
     selectedTab = tabOptions.POST;
-    contentIndexOfIndividualTab = 0;
     read("write something to post and press ENTER to upload")
     $("#post-text-field").focus();
 
@@ -74,6 +70,7 @@ $("#post-text-field").keypress(function(event) {
 function resetTabs() {
     $(".tab").hide();
     cancelRead();
+    contentIndexOfIndividualTab = 0;
 }
 
 function read(msg) {
