@@ -6,7 +6,7 @@ dummyData =
       "time": "2020-07-25T04:34:06+0000",
       "name": "David Jones",
       "text": "The red ball sat proudly at the top of the toybox.",
-      "image": "https://picsum.photos/id/1011/500",
+      "image": "https://picsum.photos/id/106/500",
       "location": "Waco, TX",
       "tags": [
         "Michael Johnson",
@@ -39,7 +39,7 @@ dummyData =
       "time": "2020-05-25T04:34:06+0000",
       "name": "Michael Johnson",
       "text": "The chair sat in the corner where it had been for over 25 years.",
-      "image": "https://picsum.photos/id/1011/106",
+      "image": "https://picsum.photos/id/1011/500",
       "location": "Austin, TX",
       "tags": [
         "David Jones",
@@ -57,7 +57,7 @@ dummyData =
       ],
       "likes": 25,
       "imageLabels": [
-        "forest",
+        "boat",
         "river",
         "water"
       ],
