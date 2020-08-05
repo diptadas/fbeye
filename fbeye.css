@@ -1,4 +1,4 @@
-.container {
+.container{
     position: relative;
     top: 10%;
     height: 450px;
@@ -10,13 +10,13 @@
     box-shadow: 1px 5px 5px 5px grey;
 }
 
-.tab-bar {
+.tab-bar{
     overflow: hidden;
     padding: 10px;
     background-color: #f1f1f1;
 }
 
-.tab-bar button {
+.tab-bar button{
     background-color: inherit;
     width: 100%;
     border: 1px solid #ccc;
@@ -25,16 +25,16 @@
     font-weight: bold;
 }
 
-.tab-bar button:hover {
+.tab-bar button:hover{
     background-color: #ddd;
 }
 
-.tab-content {
+.tab-content{
     display: flex;
     align-items: center;
 }
 
-.tab {
+.tab{
     width: 100%;
     height: 80%;
 }
