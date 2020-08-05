@@ -23,7 +23,7 @@ dummyData =
         }
       ],
       "likes": 15,
-      "image-tags": [
+      "imageLabels": [
         "sky",
         "sun",
         "flower"
@@ -56,7 +56,7 @@ dummyData =
         }
       ],
       "likes": 25,
-      "image-tags": [
+      "imageLabels": [
         "forest",
         "river",
         "water"
