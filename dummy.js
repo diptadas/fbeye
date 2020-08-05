@@ -48,9 +48,11 @@ $(document).keydown(function(e) {
 
 function readOutFeedContent(){
 
+    $("#feed-name").text(dummyData.feeds[contentIndexOfIndividualTab].name);
     $("#feed-text").text(dummyData.feeds[contentIndexOfIndividualTab].text);
     $("#feed-image").attr("src",dummyData.feeds[contentIndexOfIndividualTab].image);
 
+    read("This is a post from" + dummyData.feeds[contentIndexOfIndividualTab].name);
     read(dummyData.feeds[contentIndexOfIndividualTab].text);
 
     var imageContent = "";
