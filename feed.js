@@ -110,6 +110,9 @@ function postOptionReader() {
 // ----------------------------------------
 
 $(document).keypress(function(e) {
+    if(makeCommentFlag) {
+        return;
+    }
 
     if (e.key == "L" || e.key == 'l') {
         likePost();

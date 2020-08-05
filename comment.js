@@ -53,6 +53,8 @@ $("#comment-button").click(function(){
     setTimeout(function(){
             beep();
             read("Your comment has been uploaded successfully");
-        }, 4000);    
+    }, 4000);
+    
+    makeCommentFlag = false;
     
 });
