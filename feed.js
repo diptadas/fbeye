@@ -145,6 +145,8 @@ function likePost() {
 }
 
 function selectDeselectCommentSection() {
+
+    $("#feed-comment").text("");
     if(isCommentSectionSelected){
         read("Now you are back again in post section");
         isCommentSectionSelected = 0;
