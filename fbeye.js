@@ -61,8 +61,7 @@ function cancelRead() {
 }
 
 function beep() {
-
-		new Audio('http://www.soundjay.com/button/beep-07.wav').play();	
+	new Audio('http://www.soundjay.com/button/beep-07.wav').play();	
 }
 
 //================================================
