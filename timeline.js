@@ -1,16 +1,8 @@
 var alreadyReadOutTimelineOptions = 0;
-var timelineData = dummyData.feeds; // TODO: use live data
 
 function loadTimeline() {
-
-    // load live data
-    // timelineData = loadMyFeed();
-    loadMyFeed();
-    timelineData = myFeeds;
-    console.log(timelineData);
     
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
-
         readOutTimelineContent();
 
         if(!alreadyReadOutTimelineOptions) {
@@ -38,7 +30,7 @@ $(document).keydown(function(e) {
         if(contentIndexOfIndividualTab < 0) {
             contentIndexOfIndividualTab = 0;
         }
-        contentIndexOfIndividualTab %= timelineData.length;
+        contentIndexOfIndividualTab %= myFeeds.length;
 
         readOutTimelineContent();
     }
@@ -47,7 +39,7 @@ $(document).keydown(function(e) {
         cancelRead();
 
         contentIndexOfIndividualTab += 1;
-        contentIndexOfIndividualTab %= timelineData.length;
+        contentIndexOfIndividualTab %= myFeeds.length;
 
         readOutTimelineContent();
     }
@@ -56,15 +48,15 @@ $(document).keydown(function(e) {
 
 function readOutTimelineContent(){
 
-    $("#timeline-name").text(timelineData[contentIndexOfIndividualTab].name);
-    $("#timeline-text").text(timelineData[contentIndexOfIndividualTab].text);
-    $("#timeline-image").attr("src",timelineData[contentIndexOfIndividualTab].image);
+    $("#timeline-name").text(myFeeds[contentIndexOfIndividualTab].name);
+    $("#timeline-text").text(myFeeds[contentIndexOfIndividualTab].text);
+    $("#timeline-image").attr("src",myFeeds[contentIndexOfIndividualTab].image);
 
-    read(timelineData[contentIndexOfIndividualTab].text);
+    read(myFeeds[contentIndexOfIndividualTab].text);
 
     var imageContent = "";
-    for(var i = 0; i < timelineData[contentIndexOfIndividualTab].imageLabels.length; i++) {
-        imageContent = imageContent + ", " + timelineData[contentIndexOfIndividualTab].imageLabels[i];
+    for(var i = 0; i < myFeeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
+        imageContent = imageContent + ", " + myFeeds[contentIndexOfIndividualTab].imageLabels[i];
     }
 
     read("There is an image here which might contain " + imageContent);
