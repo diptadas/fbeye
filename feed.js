@@ -110,7 +110,14 @@ function postOptionReader() {
 // ----------------------------------------
 
 $(document).keypress(function(e) {
+    // do not switch option when posting comment
     if(makeCommentFlag) {
+        return;
+    }
+
+    // do not switch option when reading comments
+    // except A to return back to post
+    if(isCommentSectionSelected && !(e.key == "A" || e.key == "a")) {
         return;
     }
 
