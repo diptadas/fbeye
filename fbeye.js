@@ -6,16 +6,16 @@ $(document).ready(function () {
 
 tabOrder = ["#summary-tab-btn","#timeline-tab-btn","#feed-tab-btn","#post-tab-btn"];
 
-tabcount = 4;
+tabCount = 4;
 
 $(document).keydown(function(event) {
     console.log(event.key);
     if(event.key == "ArrowRight"){
-        currentTab = (currentTab+1)%tabcount;
+        currentTab = (currentTab+1)%tabCount;
         console.log(currentTab);
         $(tabOrder[currentTab]).click();
     }else if(event.key == "ArrowLeft"){
-        currentTab = (currentTab-1)%tabcount;
+        currentTab = (currentTab-1)%tabCount;
         console.log(currentTab);
         $(tabOrder[currentTab]).click();
     }
