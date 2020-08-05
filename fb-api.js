@@ -38,36 +38,10 @@ function checkLoginState() {
     });
 }
 
-function createPost(postText) {
-    console.log('posting ' + postText);
-
-    FB.api('/me/feed', 'post', { message: postText }, function(response) {
-            if (response && !response.error) {
-                console.log('Post ID: ' + response.id);
-            } else {
-                console.error(response.error);
-            }
-      });
-}
-
 function loadMyFeed() {
     console.log('loading my feeds');
     FB.api(
         "/me/feed",
-        function (response) {
-            if (response && !response.error) {
-                console.log(response);
-            } else {
-                console.error(response.error);
-            }
-        }
-    );
-}
-
-function loadPostContent(id) {
-    console.log('loading post ' + '/' + id);
-    FB.api(
-        "/" + id,
         function (response) {
             if (response && !response.error) {
                 console.log(response);
