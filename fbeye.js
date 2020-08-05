@@ -5,12 +5,16 @@ $(document).ready(function () {
 $("#summary-tab-btn").click(function () {
     hideAllTabs();
     $("#summary-tab").show();
+    selectedTab = tabOptions.SUMMARY;
+    contentIndexOfIndividualTab = 0;
 });
 
 $("#timeline-tab-btn").click(function () {
     hideAllTabs();
     $("#timeline-tab").show();
     loadMyFeed();
+    selectedTab = tabOptions.TIMELINE;
+    contentIndexOfIndividualTab = 0;
 });
 
 $("#feed-tab-btn").click(function () {
@@ -18,12 +22,25 @@ $("#feed-tab-btn").click(function () {
     $("#feed-tab").show();
     read("News feed");
     loadNewsFeed();
+    selectedTab = tabOptions.NEWSFEED;
+    contentIndexOfIndividualTab = 0;
 });
 
 $("#post-tab-btn").click(function () {
     hideAllTabs();
     $("#post-tab").show();
     read("Post");
+    selectedTab = tabOptions.POST;
+    contentIndexOfIndividualTab = 0;
+});
+
+
+$("#post-text-field").keypress(function(event) {
+    read(event.key);
+});
+
+$("#post-button").click(function(){
+    read($("#post-text-field").val());
 });
 
 function hideAllTabs() {
