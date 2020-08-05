@@ -5,6 +5,9 @@ function loadTimeline() {
 
     // load live data
     // timelineData = loadMyFeed();
+    loadMyFeed();
+    timelineData = myFeeds;
+    console.log(timelineData);
     
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
 

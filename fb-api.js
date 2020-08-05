@@ -38,6 +38,8 @@ function checkLoginState() {
     });
 }
 
+var myFeeds = [];
+
 function loadMyFeed() {
     console.log('loading my feeds');
     FB.api(
@@ -45,6 +47,31 @@ function loadMyFeed() {
         function (response) {
             if (response && !response.error) {
                 console.log(response);
+                processMyFeedResponse(response);
+            } else {
+                console.error(response.error);
+            }
+        }
+    );
+}
+
+function processMyFeedResponse(response) {
+    for (var key of Object.keys(response.data)) {
+        myFeeds[key] = [];
+        myFeeds[key].id = response.data[key].id;
+        myFeeds[key].text = response.data[key].message;
+        loadImageForPost(key)
+    }
+}
+
+function loadImageForPost(key) {
+    console.log('loading image of post');
+    FB.api(
+        "/" + myFeeds[key].id + "/attachments?fields=media",
+        function (response) {
+            if (response && !response.error && response.data[0] && response.data[0].media.image) {
+                console.log(response);
+                myFeeds[key].image = response.data[0].media.image.src;
             } else {
                 console.error(response.error);
             }
