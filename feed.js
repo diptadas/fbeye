@@ -1,17 +1,4 @@
-const tabOptions = {
-    SUMMARY: 1,
-    TIMELINE: 2,
-    NEWSFEED: 3,
-    POST: 4
-
-}
-
-var makeCommentFlag = false;
-var selectedTab = tabOptions.SUMMARY;
 var contentIndexOfIndividualTab = 0;
-
-var commentIndex = 0;
-var isCommentSectionSelected = 0;
 var alreadyReadOutOptions = 0;
 
 function loadNewsFeed() {
@@ -25,6 +12,7 @@ function loadNewsFeed() {
         } else {
             
             readOutFeedContent();
+
             if(!alreadyReadOutOptions) {
                 postOptionReader();
             }
@@ -100,16 +88,6 @@ function readOutFeedContent(){
     read("There is an image here which might contain " + imageContent);
 }
 
-function readOutCommentContent(){
-
-    var comment = dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex];
-    $("#feed-comment").text(comment.name + ": " + comment.text);
-    
-
-    read("This is a comment from" + comment.name);
-    read(dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex].text);
-}
-
 function postOptionReader() {
 
     alreadyReadOutOptions = 1;
@@ -128,7 +106,7 @@ function postOptionReader() {
 }
 
 // ========================================
-// key press handler
+// news feed key press handler
 // ----------------------------------------
 
 $(document).keypress(function(e) {
@@ -150,7 +128,7 @@ $(document).keypress(function(e) {
 
 
 // ========================================
-// new feed options implementation
+// news feed options implementation
 // ----------------------------------------
 
 function likePost() {
@@ -174,48 +152,3 @@ function repeatPostOptions() {
     postOptionReader();
 }
 
-function makeComment() {
-    // var postComment = "You have successfully made a ";
-    cancelRead();
-    $("#comment-text-field").focus();
-    makeCommentFlag = true;
-    read("Write a comment and press enter to upload");
-    $("#comment-text-field").keypress(function(event) {
-        console.log(makeCommentFlag);
-        if(makeCommentFlag == true){
-            if(event.key == "Enter"){
-                $("#comment-button").click();
-            }else{
-                read(event.key);
-            }
-        }
-    });
-}
-
-function readAllCommentsOptions() {
-
-    var postEndCommentEnterCommand = "Now you have entered in comment section";
-    var postEndUpDownCommentCommand = "Press up and down arrow arrow to navigate between comments";
-    var postEndCommentFinish = "Press A again to return to the post section";
-
-    read(postEndCommentEnterCommand);
-    read(postEndUpDownCommentCommand);
-    read(postEndCommentFinish);
-
-}
-
-$("#comment-button").click(function(){
-    read($("#comment-text-field").val());
-    var postText = $("#comment-text-field").val();
-
-    read("Your comment is uploading");
-
-    $("#comment-text-field").val(null);
-    $("#comment-text-field").blur();
-
-    setTimeout(function(){
-            beep();
-            read("Your comment has been uploaded successfully");
-        }, 4000);    
-    
-});

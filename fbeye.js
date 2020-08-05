@@ -1,12 +1,21 @@
-currentTab =0;
-$(document).ready(function () {
-    $("#summary-tab-btn").click();
-    currentTab=0;
-});
-
+currentTab = 0;
+tabCount = 4;
 tabOrder = ["#summary-tab-btn","#timeline-tab-btn","#feed-tab-btn","#post-tab-btn"];
 
-tabCount = 4;
+const tabOptions = {
+    SUMMARY: 1,
+    TIMELINE: 2,
+    NEWSFEED: 3,
+    POST: 4
+
+}
+var selectedTab = tabOptions.SUMMARY;
+
+$(document).ready(function () {
+    $("#summary-tab-btn").click();
+    currentTab = 0;
+});
+
 
 $(document).keydown(function(event) {
     console.log(event.key);
@@ -58,15 +67,6 @@ $("#post-tab-btn").click(function () {
 });
 
 
-$("#post-text-field").keypress(function(event) {
-    if(event.key == "Enter"){
-        $("#post-button").click();
-    }else{
-        read(event.key);
-    }
-});
-
-
 function resetTabs() {
     $(".tab").hide();
     cancelRead();
@@ -84,19 +84,3 @@ function cancelRead() {
 function beep() {
 	new Audio('http://www.soundjay.com/button/beep-07.wav').play();	
 }
-
-//================================================
-// Post button action
-//------------------------------------------------
-$("#post-button").click(function(){
-    read($("#post-text-field").val());
-    var postText = $("#post-text-field").val();
-    read("Your post is uploading");
-    
-    $("#post-text-field").val(null);
-    setTimeout(function(){
-            beep();
-            read("Your Post has been uploaded successfully");
-        }, 4000);    
-    
-});
