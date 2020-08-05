@@ -114,3 +114,24 @@ function repeatOptions() {
 function makeComment() {
     //var postComment = "You have successfully made a ";
 }
+
+$("#comment-text-field").keypress(function(event) {
+    if(event.key == "Enter"){
+        $("#post-button").click();
+    }else{
+        read(event.key);
+    }
+});
+
+$("#comment-button").click(function(){
+    read($("#comment-text-field").val());
+    var postText = $("#comment-text-field").val();
+    read("Your comment is uploading");
+    
+    $("#comment-text-field").val(null);
+    setTimeout(function(){
+            beep();
+            read("Your comment has been uploaded successfully");
+        }, 4000);    
+    
+});
