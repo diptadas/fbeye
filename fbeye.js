@@ -34,6 +34,15 @@ $("#post-tab-btn").click(function () {
     contentIndexOfIndividualTab = 0;
 });
 
+
+$("#post-text-field").keypress(function(event) {
+    read(event.key);
+});
+
+$("#post-button").click(function(){
+    read($("#post-text-field").val());
+});
+
 function hideAllTabs() {
     $(".tab").hide();
 }
