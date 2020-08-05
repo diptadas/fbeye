@@ -128,7 +128,6 @@ function optionReader() {
     read(postEndCommentCommand);
     read(postEndReadCommentCommand);
     read(postEndRepeatCommand);
-    
 
 }
 
@@ -170,7 +169,6 @@ function repeatOptions() {
 }
 
 function makeComment() {
-<<<<<<< HEAD
     //var postComment = "You have successfully made a ";
     cancelRead();
     $("#comment-text-field").focus();
@@ -186,9 +184,6 @@ function makeComment() {
             }
         }
     });
-=======
-    
->>>>>>> 57e094b4cf6729212b16e731f651d28efa4d37f2
 }
 
 function readAllCommentsOptions() {
