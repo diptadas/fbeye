@@ -35,7 +35,7 @@ $(document).keydown(function(event) {
 $("#summary-tab-btn").click(function () {
     resetTabs();
     $("#summary-tab").show();
-    read("summary");
+    read("home");
     selectedTab = tabOptions.SUMMARY;
 });
 
