@@ -34,12 +34,17 @@
             <div id="summary-tab" class="tab">
                 <h1>Home</h1>
 
-                <!-- The JS SDK Login Button -->
-                <fb:login-button id="login-btn" scope="public_profile,email,user_posts" onlogin="checkLoginState();">
-                </fb:login-button>
-
-                <div id="status">
+                <div id="home-login">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username"><br><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password"><br><br>
+                    <!-- The JS SDK Login Button -->
+                    <fb:login-button id="login-btn" scope="public_profile,email,user_posts" onlogin="checkLoginState();">
+                    </fb:login-button>
                 </div>
+
+                <p id="status">Please log using Facebook</p>
 
             </div>
 

@@ -9,17 +9,23 @@ window.fbAsyncInit = function () {
         version: 'v8.0'
     });
 
+    // FB.getLoginStatus(function (response) {
+    //     statusChangeCallback(response);
+    // });
+};
+
+$("#login-btn").click(function () {
     FB.getLoginStatus(function (response) {
         statusChangeCallback(response);
     });
-};
+});
 
 function testAPI() {
     console.log('Welcome! Fetching your information....');
     FB.api('/me', function (response) {
         loginName = response.name;
         console.log('Successful login for: ' + response.name);
-        document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+        document.getElementById('status').innerHTML = 'Welcome ' + response.name + '!';
     });
 }
 
@@ -27,12 +33,12 @@ function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
     if (response.status === 'connected') {      // logged in
-        $("#login-btn").hide();                 // hide login button
+        $("#home-login").hide();                 // hide login section
         testAPI();
         loadMyFeeds();
     } else {                                    // not logged in
-        $("#login-btn").show();                 // show login button
-        document.getElementById('status').innerHTML = 'Please log into this webpage.';
+        $("#home-login").show();                 // show login section
+        document.getElementById('status').innerHTML = 'Please log using Facebook.';
     }
 }
 
