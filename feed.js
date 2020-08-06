@@ -109,6 +109,11 @@ function postOptionReader() {
 
 $(document).keypress(function(e) {
     // do not switch option when posting comment
+
+    if(selectedTab != tabOptions.NEWSFEED) {
+        return;
+    }
+    
     if(makeCommentFlag) {
         return;
     }

@@ -14,6 +14,7 @@ var selectedTab = tabOptions.SUMMARY;
 $(document).ready(function () {
     $("#summary-tab-btn").click();
     currentTab = 0;
+    selectedTab = tabOptions.SUMMARY;
 });
 
 
