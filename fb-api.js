@@ -63,7 +63,7 @@ function processMyFeedResponse(response) {
 
         postContent.id = response.data[key].id;
         postContent.name = loginName;
-        postContent.imageLabels = ["red", "green", "blue"]; // dummy data
+        postContent.imageLabels = dummyData.labels; // dummy data
 
         if(response.data[key].message) {
             postContent.text = response.data[key].message;
@@ -80,11 +80,6 @@ function processMyFeedResponse(response) {
         if(postContent.text && postContent.image) {
             myFeeds.push(postContent);
         }
-    }
-
-    // dummy data in case of login failed
-    if(!myFeeds.length) {
-        myFeeds = dummyData.feeds;
     }
     
     console.log(myFeeds);

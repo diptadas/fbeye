@@ -1,6 +1,11 @@
 var alreadyReadOutTimelineOptions = 0;
 
 function loadTimeline() {
+
+    // dummy data in case of login failed
+    if(!myFeeds.length) {
+        myFeeds = dummyData.timeline;
+    }
     
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
         readOutTimelineContent();
