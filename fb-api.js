@@ -44,7 +44,7 @@ function statusChangeCallback(response) {
         loadMyFeeds();
     } else {                                    // not logged in
         $("#home-login").show();                 // show login section
-        document.getElementById('status').innerHTML = 'Please log in using Facebook';
+        document.getElementById('status').innerHTML = 'Please login using Facebook';
     }
 }
 
