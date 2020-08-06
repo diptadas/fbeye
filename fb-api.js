@@ -21,6 +21,7 @@ $("#login-btn").click(function () {
 });
 
 function readHomeContent(name) {
+    read(document.getElementById('status').innerHTML); // read welcome
     read("Use left and right arrow to navigate between tabs");
 }
 
@@ -30,7 +31,6 @@ function testAPI() {
         loginName = response.name;
         console.log('Successful login for: ' + response.name);
         document.getElementById('status').innerHTML = 'Welcome ' + response.name + '!';
-        read(document.getElementById('status').innerHTML); // read welcome
         readHomeContent(response.name);
     });
 }
@@ -44,7 +44,7 @@ function statusChangeCallback(response) {
         loadMyFeeds();
     } else {                                    // not logged in
         $("#home-login").show();                 // show login section
-        document.getElementById('status').innerHTML = 'Please log using Facebook';
+        document.getElementById('status').innerHTML = 'Please log in using Facebook';
     }
 }
 

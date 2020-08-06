@@ -36,6 +36,7 @@ $("#summary-tab-btn").click(function () {
     resetTabs();
     $("#summary-tab").show();
     read("home");
+    readHomeContent();
     selectedTab = tabOptions.SUMMARY;
 });
 
