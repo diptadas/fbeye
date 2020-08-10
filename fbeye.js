@@ -1,22 +1,30 @@
 currentTab = 0;
 tabCount = 4;
-tabOrder = ["#summary-tab-btn","#timeline-tab-btn","#feed-tab-btn","#post-tab-btn"];
+tabOrder = ["#home-tab-btn","#timeline-tab-btn","#feed-tab-btn","#post-tab-btn"];
 
 const tabOptions = {
-    SUMMARY: 1,
+    HOME: 1,
     TIMELINE: 2,
     NEWSFEED: 3,
     POST: 4
 
 }
-var selectedTab = tabOptions.SUMMARY;
+var selectedTab = tabOptions.HOME;
 
 $(document).ready(function () {
-    $("#summary-tab-btn").click();
-    currentTab = 0;
-    selectedTab = tabOptions.SUMMARY;
+    $("#app").hide();
+    loadSetup();
 });
 
+function startApplication() {
+    $("#setup").hide();
+    $("#app").show();
+
+    $("#home-tab-btn").click();
+
+    currentTab = 0;
+    selectedTab = tabOptions.HOME;
+}
 
 $(document).keydown(function(event) {
     console.log(event.key);
@@ -33,15 +41,19 @@ $(document).keydown(function(event) {
 });
 
 
-$("#summary-tab-btn").click(function () {
+$("#home-tab-btn").click(function () {
     resetTabs();
-    $("#summary-tab").show();
+    $("#home-tab").show();
     read("home");
     readHomeContent();
-    selectedTab = tabOptions.SUMMARY;
+    selectedTab = tabOptions.HOME;
 });
 
 $("#timeline-tab-btn").click(function () {
+    if(!alreadyLoggedIn) {
+        readLogin();
+        return;
+    }
     resetTabs();
     $("#timeline-tab").show();
     read("timeline")
@@ -50,6 +62,10 @@ $("#timeline-tab-btn").click(function () {
 });
 
 $("#feed-tab-btn").click(function () {
+    if(!alreadyLoggedIn) {
+        readLogin();
+        return;
+    }
     resetTabs();
     flag = false;
     $("#feed-tab").show();
@@ -59,6 +75,10 @@ $("#feed-tab-btn").click(function () {
 });
 
 $("#post-tab-btn").click(function () {
+    if(!alreadyLoggedIn) {
+        readLogin();
+        return;
+    }
     resetTabs();
     $("#post-tab").show();
     read("Post");
@@ -68,6 +88,9 @@ $("#post-tab-btn").click(function () {
 
 });
 
+function readLogin() {
+    read("Please login using Facebook");
+}
 
 function resetTabs() {
     $(".tab").hide();
