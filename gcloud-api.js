@@ -43,10 +43,12 @@ function getImageLabels(imageContents) {
 
     success: function (data) {
       console.log(data);
-      var labels = [];
+
       for (i in data.responses) {
         var response = data.responses[i];
+
         if (response && !response.error) {
+          var labels = [];
           for (var key of Object.keys(response.labelAnnotations)) {
             labels[key] = response.labelAnnotations[key].description;
           }
