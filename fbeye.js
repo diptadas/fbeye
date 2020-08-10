@@ -13,7 +13,6 @@ var selectedTab = tabOptions.HOME;
 
 $(document).ready(function () {
     $("#app").hide();
-    loadSetup();
 });
 
 function startApplication() {
