@@ -1,46 +1,78 @@
-function getImageLabels(imageUri) {
-    var url = "https://vision.googleapis.com/v1/images:annotate?key=YOUR_API_KEY";
-    var requestData = 
-    {
-        "requests": [
-          {
-            "image": {
-              "source": {
-                "imageUri": ""
-              }
-            },
-            "features": [
-              {
-                "type": "LABEL_DETECTION",
-                "maxResults": 5
-              }
-            ]
+apiKey = "";
+gcloudImageLabels = [];
+
+function getImageLabels(imageContents) {
+  var url = "https://vision.googleapis.com/v1/images:annotate?key=" + apiKey;
+
+  var requestData =
+  {
+    "requests": [
+    ]
+  };
+
+  var requestTemplate = {
+    "image": {
+      "content": ""
+    },
+    "features": [
+      {
+        "type": "LABEL_DETECTION",
+        "maxResults": 3
+      }
+    ]
+  }
+
+  // add image urls to request data
+  for (i in imageContents) {
+    singleRequest = JSON.parse(JSON.stringify(requestTemplate))
+    singleRequest.image.content = imageContents[i];
+    requestData.requests.push(singleRequest);
+  };
+
+  console.log(requestData);
+
+  var failedLoadingImageLabels = false;
+
+  $.ajax({
+    url: url,
+    type: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data: JSON.stringify(requestData),
+
+    success: function (data) {
+      console.log(data);
+      var labels = [];
+      for (i in data.responses) {
+        var response = data.responses[i];
+        if (response && !response.error) {
+          for (var key of Object.keys(response.labelAnnotations)) {
+            labels[key] = response.labelAnnotations[key].description;
           }
-        ]
-    };
-
-    requestData.requests[0].image.source.imageUri = imageUri;
-
-    $.ajax({
-        url: url,
-        type: "POST",
-        headers: {
-            'Content-Type':'application/json'
-        },
-        data: JSON.stringify(requestData),
-        success: function(data) {
-            var labels = [];
-            var annotations = data.responses[0].labelAnnotations;
-            for (var key of Object.keys(annotations)) {
-                labels[key] = annotations[key].description;
-            }
-            console.log(labels);
-            return labels;
-        },
-        error: function (request) {
-            console.error(request.responseJSON.error);
+          gcloudImageLabels.push(labels);
+        } else {
+          failedLoadingImageLabels = true;
+          break;
         }
-    });
+      };
+    },
+
+    error: function (request) {
+      failedLoadingImageLabels = true;
+      console.error(request.responseJSON.error);
+    },
+
+    complete: function (request) {
+      if (failedLoadingImageLabels) {
+        gcloudImageLabels = [];
+        alert("Failed to load gcloud data, please try again or use dummy data.");
+      } else {
+        // done loading image labels
+        onGCloudSuccess();
+      }
+    }
+  });
 }
 
 function getKeywords(text) {
