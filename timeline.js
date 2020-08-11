@@ -68,6 +68,8 @@ function readOutTimelineContent(){
         imageContent = imageContent + ", " + myFeeds[contentIndexOfIndividualTab].imageLabels[i];
     }
 
+    $("#timeline-image-keywords").text("Image keywords are:" + imageContent.substring(1, imageContent.length));
+
     read("There is an image here which might contain " + imageContent);
 }
 
