@@ -98,6 +98,9 @@ function readOutFeedContent(){
     read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
             + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
 
+    $("#feed-like-comment").text("Likes: " + dummyData.feeds[contentIndexOfIndividualTab].likes + " " + "Comments: "
+            + dummyData.feeds[contentIndexOfIndividualTab].comments.length);
+
     //var helpOptionsForFeed = "Press H for all options.";
     //read(helpOptionsForFeed);
 
