@@ -13,74 +13,106 @@
 <body>
 
     <div class="container">
-        <div class="pure-g tab-bar">
-            <div class="pure-u-1-4">
-                <button class="pure-button" id="summary-tab-btn"><i class="fas fa-phone-square-alt"></i>
-                    Home</button>
+
+        <div id="setup">
+
+            <h1>Setup</h1>
+            <p style="text-align:justify">This initial setup process must be completed before performing user tests. You can
+                either use dummy data or, go through the configuration process.</p>
+
+            <h2>Option 1: Use Dummy Data</h2>
+            <button id="setup-dummy-btn">Continue With Dummy Data</button>
+
+            <h2>Option 2: Configure Facebook and GCloud API</h2>
+
+            <p>Step 1: Please login to Facebook using the credential provided by the developer.
+            </p>
+            <!-- The JS SDK Login Button -->
+            <fb:login-button id="setup-fb-btn" scope="public_profile,email,user_posts" onlogin="checkLoginState();">
+            </fb:login-button>
+            <p id="fb-setup-status">Not Logged In</p>
+
+            <p>Step 2:
+                Please enter the the API key provided by the developer.
+            </p>
+            <label for="setup-api-key">API Key:</label>
+            <input type="text" id="setup-api-key" name="setup-api-key"><br><br>
+            <button id="setup-gcloud-btn">Submit API Key</button>
+
+        </div>
+
+        <div id="app">
+
+            <div class="pure-g tab-bar">
+                <div class="pure-u-1-4">
+                    <button class="pure-button" id="home-tab-btn"><i class="fas fa-phone-square-alt"></i>
+                        Home</button>
+                </div>
+                <div class="pure-u-1-4">
+                    <button class="pure-button" id="timeline-tab-btn"><i class="fas fa-address-book"></i>
+                        Timeline</button>
+                </div>
+                <div class="pure-u-1-4">
+                    <button class="pure-button" id="feed-tab-btn"><i class="fas fa-address-book"></i> News Feed</button>
+                </div>
+                <div class="pure-u-1-4">
+                    <button class="pure-button" id="post-tab-btn"><i class="fas fa-user-plus"></i> Post</button>
+                </div>
             </div>
-            <div class="pure-u-1-4">
-                <button class="pure-button" id="timeline-tab-btn"><i class="fas fa-address-book"></i> Timeline</button>
-            </div>
-            <div class="pure-u-1-4">
-                <button class="pure-button" id="feed-tab-btn"><i class="fas fa-address-book"></i> News Feed</button>
-            </div>
-            <div class="pure-u-1-4">
-                <button class="pure-button" id="post-tab-btn"><i class="fas fa-user-plus"></i> Post</button>
+
+            <div class="tab-content">
+
+                <div id="home-tab" class="tab">
+                    <h1>Home</h1>
+
+                    <div id="home-login">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username"><br><br>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password"><br><br>
+                        <button id="login-btn">Login</button>
+                    </div>
+
+                    <p id="status">Please login using Facebook</p>
+                    <p id="direction">Use left and right arrow to navigate between tabs.</p>
+
+                </div>
+
+                <div id="timeline-tab" class="tab">
+                    <h1>Timeline</h1>
+
+                    <div id="timeline-content-div">
+                        <b><label id="timeline-name"></label></b></br></br>
+                        <label id="timeline-text"></label></br></br>
+                        <img id="timeline-image" width='300px' height='300px'></br></br>
+                    </div>
+                </div>
+
+                <div id="feed-tab" class="tab">
+
+                    <h1>News Feed</h1>
+
+                    <div id="feed-content-div">
+                        <b><label id="feed-name"></label></b></br></br>
+                        <label id="feed-text"></label></br></br>
+                        <img id="feed-image" width='200px' height='200px'></br></br>
+                    </div>
+
+                    <textarea id="comment-text-field" rows="2" cols="70"></textarea></br></br>
+                    <input id="comment-button" type="button" value="Comment"></br></br>
+
+                    <label id="feed-comment"></label>
+
+                </div>
+
+                <div id="post-tab" class="tab">
+                    <h1>Post</h1>
+                    <textarea id="post-text-field" rows="5" cols="70"></textarea></br></br>
+                    <input id="post-button" type="button" value="Post">
+                </div>
             </div>
         </div>
 
-        <div class="tab-content">
-
-            <div id="summary-tab" class="tab">
-                <h1>Home</h1>
-
-                <div id="home-login">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username"><br><br>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password"><br><br>
-                    <!-- The JS SDK Login Button -->
-                    <fb:login-button id="login-btn" scope="public_profile,email,user_posts" onlogin="checkLoginState();">
-                    </fb:login-button>
-                </div>
-
-                <p id="status">Please login using Facebook</p>
-
-            </div>
-
-            <div id="timeline-tab" class="tab">
-                <h1>Timeline</h1>
-
-                <div id="timeline-content-div">
-                    <b><label id="timeline-name"></label></b></br></br>
-                    <label id="timeline-text"></label></br></br>
-                    <img id="timeline-image" width='300px' height='300px'></br></br> 
-                </div>
-            </div>
-
-            <div id="feed-tab" class="tab">
-
-                <h1>News Feed</h1>
-
-                <div id="feed-content-div">
-                    <b><label id="feed-name"></label></b></br></br>
-                    <label id="feed-text"></label></br></br>
-                    <img id="feed-image" width='200px' height='200px'></br></br> 
-                </div>
-                
-                <textarea id ="comment-text-field" rows="2" cols="70"></textarea></br></br>
-                <input id="comment-button" type="button" value="Comment"></br></br>
-
-                <label id="feed-comment"></label>
-                
-            </div>
-
-            <div id="post-tab" class="tab">
-                <h1>Post</h1>
-                <textarea id ="post-text-field" rows="5" cols="70"></textarea></br></br>
-                <input id="post-button" type="button" value="Post">
-            </div>
-        </div>
     </div>
 
     <!-- Load jquery -->
@@ -91,10 +123,12 @@
     <script src="data.js"></script>
     <script src="fb-api.js"></script>
     <script src="gcloud-api.js"></script>
+    <script src="home.js"></script>
     <script src="post.js"></script>
     <script src="comment.js"></script>
     <script src="timeline.js"></script>
     <script src="feed.js"></script>
+    <script src="setup.js"></script>
     <script src="fbeye.js"></script>
 </body>
 

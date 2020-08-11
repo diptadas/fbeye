@@ -72,7 +72,7 @@ dummyData =
     {
       "id": 1,
       "time": "2020-07-25T04:34:06+0000",
-      "name": "John Smith",
+      "name": "Daniel Garcia",
       "text": "The shoes had been there for as long as anyone could remember.",
       "image": "https://i.picsum.photos/id/1015/500/500.jpg?hmac=LNni84jXVOXdvxYPr-DoeAxRSQnnd-9Sf_-CunUKGYI",
       "location": "Waco, TX",
@@ -91,7 +91,7 @@ dummyData =
     {
       "id": 2,
       "time": "2020-05-25T04:34:06+0000",
-      "name": "John Smith",
+      "name": "Daniel Garcia",
       "text": "Her eyebrows were a shade darker than her hair.",
       "image": "https://i.picsum.photos/id/1027/500/500.jpg?hmac=tPEylHqcbPQbHwiryAHSrV1GruWBPnj2PWwrITymdkQ",
       "location": "Austin, TX",
@@ -113,13 +113,5 @@ dummyData =
     "green",
     "blue"
   ],
-  "names": [
-    "John Smith",
-    "David Jones",
-    "Michael Johnson",
-    "Chris Lee",
-    "Mike Brown",
-    "Maria Lopez",
-    "Daniel Garcia"
- ]
+  "loginName": "Daniel Garcia"
 }
