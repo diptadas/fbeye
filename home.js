@@ -26,7 +26,6 @@ $("#login-btn").click(function () {
         setTimeout(function () {
             $("#home-tab-btn").click();
         }, 5000);
-
     }
 });
 

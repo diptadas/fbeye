@@ -1,5 +1,4 @@
 var contentIndexOfIndividualTab = 0;
-var alreadyReadOutOptions = 0;
 
 function loadNewsFeed() {
 
@@ -9,9 +8,7 @@ function loadNewsFeed() {
             readOutCommentContent();
         } else {
             readOutFeedContent();
-            if (!alreadyReadOutOptions) {
-                readOutHelpOptions();
-            }
+            readOutHelpOptions();
         }
     }
 }
@@ -106,15 +103,16 @@ function readOutFeedContent() {
 
 }
 
+function readOutHelpOptions() {
+    read("Press H to learn about shortcuts.");
+}
+
 function postOptionReader() {
-
-    alreadyReadOutOptions = 1;
-
     var postEndUpDownCommand = "Use up and down arrow to navigate between posts";
+    var fullTextCommand = "Press R to read full post";
     var postEndLikeCommand = "Press L to like this post";
     var postEndCommentCommand = "Press C to comment on this post";
     var postEndReadCommentCommand = "Press A to read all the comments";
-    var fullTextCommand = "Press R to read full post";
 
     read(postEndUpDownCommand);
     read(fullTextCommand);
@@ -197,8 +195,4 @@ function selectDeselectCommentSection() {
 
 function readFullText() {
     read(dummyData.feeds[contentIndexOfIndividualTab].text);
-}
-
-function readOutHelpOptions() {
-    read("Press H for help menu.");
 }
