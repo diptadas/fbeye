@@ -117,10 +117,11 @@ function postOptionReader() {
     var fullTextCommand = "Press R to read full post";
 
     read(postEndUpDownCommand);
+    read(fullTextCommand);
     read(postEndLikeCommand);
     read(postEndCommentCommand);
     read(postEndReadCommentCommand);
-    read(fullTextCommand);
+    
 }
 
 // ========================================
