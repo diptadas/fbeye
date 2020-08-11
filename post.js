@@ -2,6 +2,7 @@ $("#post-text-field").keypress(function(event) {
     if(event.key == "Enter"){
         $("#post-button").click();
     }else{
+        cancelRead();
         read(event.key);
     }
 });
