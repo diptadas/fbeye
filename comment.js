@@ -63,13 +63,16 @@ $("#comment-button").click(function(){
             beep();
             read("Your comment has been uploaded successfully");
             }, 4000);
+            makeCommentFlag = false;
             
         }else if(event.key == "N" || event.key == "n"){
+            cancelRead();
+            read("your comment has not uploaded");
             $("#comment-text-field").val(null);
             $("#comment-text-field").blur();
+            makeCommentFlag = false;
         }
         
-    });    
-    makeCommentFlag = false;
+    });   
     
 });

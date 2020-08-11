@@ -10,13 +10,28 @@ function readHomeContent() {
         document.getElementById('status').innerHTML = 'Please login to continue';
         document.getElementById('direction').innerHTML = "";
     }
+    cancelRead();
     read(document.getElementById('status').innerHTML);
     read(document.getElementById('direction').innerHTML);
 }
 
 $("#login-btn").click(function () {
-    alreadyLoggedIn = true;
-    readHomeContent();
+    console.log(("#username").val);
+    console.log(("#password").val);
+
+    if(typeof ("#username") !== "undefined" && typeof ("#password") !== "undefined"){
+        alreadyLoggedIn = true;
+        readHomeContent();
+    }
+    else{
+        cancelRead();
+            beep();
+            read("Invalid username or password. Please try again.");
+        setTimeout(function(){
+                        $("#home-tab-btn").click();
+            }, 6000);
+        
+    }
 });
 
 $("#username").keypress(function(event) {
