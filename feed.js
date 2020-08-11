@@ -85,7 +85,7 @@ function readOutFeedContent(){
     //read(dummyData.feeds[contentIndexOfIndividualTab].text);
 
     read("Post keywords are: " + postTextContent);
-    $("#feed-text-keywords").text(postTextContent);
+    $("#feed-text-keywords").text("Post keywords are" + postTextContent);
 
     var imageContent = "";
     for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
@@ -93,7 +93,7 @@ function readOutFeedContent(){
     }
 
     read("There is an image here which might contain " + imageContent);
-    $("#feed-image-keywords").text(imageContent);
+    $("#feed-image-keywords").text("Image keywords are" + imageContent);
 
     read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
             + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
