@@ -10,7 +10,7 @@ function loadNewsFeed() {
         } else {
             readOutFeedContent();
             if(!alreadyReadOutOptions) {
-                postOptionReader();
+                readOutHelpOptions();
             }
         }
     }
@@ -85,7 +85,7 @@ function readOutFeedContent(){
     //read(dummyData.feeds[contentIndexOfIndividualTab].text);
 
     read("Post keywords are: " + postTextContent);
-
+    $("#feed-text-keywords").text(postTextContent);
 
     var imageContent = "";
     for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
@@ -93,9 +93,13 @@ function readOutFeedContent(){
     }
 
     read("There is an image here which might contain " + imageContent);
+    $("#feed-image-keywords").text(imageContent);
 
     read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
             + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
+
+    //var helpOptionsForFeed = "Press H for all options.";
+    //read(helpOptionsForFeed);
 
 }
 
@@ -107,13 +111,13 @@ function postOptionReader() {
     var postEndLikeCommand = "Press L to like this post";
     var postEndCommentCommand = "Press C to comment on this post";
     var postEndReadCommentCommand = "Press A to read all the comments";
-    var postEndRepeatCommand = "Press R to repeat the options";
+    //var postEndRepeatCommand = "Press R to repeat the options";
 
     read(postEndUpDownCommand);
     read(postEndLikeCommand);
     read(postEndCommentCommand);
     read(postEndReadCommentCommand);
-    read(postEndRepeatCommand);
+    //read(postEndRepeatCommand);
 }
 
 // ========================================
@@ -146,9 +150,13 @@ $(document).keypress(function(e) {
     } else if (makeCommentFlag == false && (e.key == "C" || e.key == "c")) {
         makeComment();
         console.log("C Pressed");
-    } else if (e.key == "A" || e.key == "a"){
+    } else if (e.key == "A" || e.key == "a") {
         selectDeselectCommentSection();
         console.log("A Pressed");
+    } else if (e.key == "H" || e.key == "h") {
+
+        postOptionReader();
+        console.log("H Pressed");
     }
 });
 
@@ -180,3 +188,6 @@ function repeatPostOptions() {
     postOptionReader();
 }
 
+function readOutHelpOptions() {
+    read("Press H for help menu.");
+}
