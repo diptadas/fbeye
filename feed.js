@@ -160,6 +160,13 @@ $(document).keypress(function(e) {
 
         postOptionReader();
         console.log("H Pressed");
+    } else if (e.key == "Y" || e.key == "y") {
+
+        read("Your comment has been uploaded successfully");
+
+    } else if (e.key == "N" || e.key == "n") {
+
+        read("Your comment has not been uploaded");
     }
 });
 
