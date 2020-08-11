@@ -1,6 +1,6 @@
 currentTab = 0;
 tabCount = 4;
-tabOrder = ["#home-tab-btn","#timeline-tab-btn","#feed-tab-btn","#post-tab-btn"];
+tabOrder = ["#home-tab-btn", "#timeline-tab-btn", "#feed-tab-btn", "#post-tab-btn"];
 
 const tabOptions = {
     HOME: 1,
@@ -25,18 +25,18 @@ function startApplication() {
     selectedTab = tabOptions.HOME;
 }
 
-$(document).keydown(function(event) {
+$(document).keydown(function (event) {
     console.log(event.key);
-    if(event.key == "ArrowRight"){
-        currentTab = (currentTab+1)%tabCount;
+    if (event.key == "ArrowRight") {
+        currentTab = (currentTab + 1) % tabCount;
         console.log(currentTab);
         $(tabOrder[currentTab]).click();
-    }else if(event.key == "ArrowLeft"){
-        currentTab = (currentTab-1+tabCount)%tabCount;
+    } else if (event.key == "ArrowLeft") {
+        currentTab = (currentTab - 1 + tabCount) % tabCount;
         console.log(currentTab);
         $(tabOrder[currentTab]).click();
     }
-    
+
 });
 
 
@@ -51,7 +51,7 @@ $("#home-tab-btn").click(function () {
 });
 
 $("#timeline-tab-btn").click(function () {
-    if(!alreadyLoggedIn) {
+    if (!alreadyLoggedIn) {
         readLogin();
         return;
     }
@@ -63,7 +63,7 @@ $("#timeline-tab-btn").click(function () {
 });
 
 $("#feed-tab-btn").click(function () {
-    if(!alreadyLoggedIn) {
+    if (!alreadyLoggedIn) {
         readLogin();
         return;
     }
@@ -76,7 +76,7 @@ $("#feed-tab-btn").click(function () {
 });
 
 $("#post-tab-btn").click(function () {
-    if(!alreadyLoggedIn) {
+    if (!alreadyLoggedIn) {
         readLogin();
         return;
     }
@@ -100,7 +100,7 @@ function resetTabs() {
 }
 
 function read(msg) {
-	window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
+    window.speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
 }
 
 function cancelRead() {
@@ -108,5 +108,5 @@ function cancelRead() {
 }
 
 function beep() {
-	new Audio('http://www.soundjay.com/button/beep-07.wav').play();	
+    new Audio('http://www.soundjay.com/button/beep-07.wav').play();
 }

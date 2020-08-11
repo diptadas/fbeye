@@ -2,7 +2,7 @@ var makeCommentFlag = false;
 var commentIndex = 0;
 var isCommentSectionSelected = 0;
 
-function readOutCommentContent(){
+function readOutCommentContent() {
 
     var comment = dummyData.feeds[contentIndexOfIndividualTab].comments[commentIndex];
     $("#feed-comment").text(comment.name + ": " + comment.text);
@@ -26,19 +26,19 @@ function readAllCommentsOptions() {
 function makeComment() {
     // var postComment = "You have successfully made a ";
     cancelRead();
-    setTimeout(function(){
+    setTimeout(function () {
         $("#comment-text-field").focus();
         makeCommentFlag = true;
         read("Write a comment and press enter to upload");
     }, 100);
-    
-    
-    $("#comment-text-field").keypress(function(event) {
+
+
+    $("#comment-text-field").keypress(function (event) {
         console.log(makeCommentFlag);
-        if(makeCommentFlag == true){
-            if(event.key == "Enter"){
+        if (makeCommentFlag == true) {
+            if (event.key == "Enter") {
                 $("#comment-button").click();
-            }else{
+            } else {
                 cancelRead();
                 read(event.key);
             }
@@ -46,33 +46,33 @@ function makeComment() {
     });
 }
 
-$("#comment-button").click(function(){
+$("#comment-button").click(function () {
 
     read($("#comment-text-field").val());
     var postText = $("#comment-text-field").val();
     read("Press Y for uploading the comment or press N for canceling the comment");
-    $(document).keydown(function(event) {
+    $(document).keydown(function (event) {
         console.log(event.key);
-        if(event.key == "Y" || event.key == "y"){
+        if (event.key == "Y" || event.key == "y") {
             read("Your comment is uploading");
 
             $("#comment-text-field").val(null);
             $("#comment-text-field").blur();
 
-            setTimeout(function(){
-            beep();
-            read("Your comment has been uploaded successfully");
+            setTimeout(function () {
+                beep();
+                read("Your comment has been uploaded successfully");
             }, 4000);
             makeCommentFlag = false;
-            
-        }else if(event.key == "N" || event.key == "n"){
+
+        } else if (event.key == "N" || event.key == "n") {
             cancelRead();
             read("your comment has not uploaded");
             $("#comment-text-field").val(null);
             $("#comment-text-field").blur();
             makeCommentFlag = false;
         }
-        
-    });   
-    
+
+    });
+
 });

@@ -2,14 +2,14 @@ var contentIndexOfIndividualTab = 0;
 var alreadyReadOutOptions = 0;
 
 function loadNewsFeed() {
-    
+
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
 
-        if(isCommentSectionSelected) {
+        if (isCommentSectionSelected) {
             readOutCommentContent();
         } else {
             readOutFeedContent();
-            if(!alreadyReadOutOptions) {
+            if (!alreadyReadOutOptions) {
                 readOutHelpOptions();
             }
         }
@@ -20,10 +20,10 @@ function loadNewsFeed() {
 // up and down key press handler
 // ----------------------------------------
 
-$(document).keydown(function(e) {
-    if(selectedTab != tabOptions.NEWSFEED) {
+$(document).keydown(function (e) {
+    if (selectedTab != tabOptions.NEWSFEED) {
         return;
-    } 
+    }
 
     console.log(selectedTab);
 
@@ -32,19 +32,19 @@ $(document).keydown(function(e) {
         cancelRead();
 
         contentIndexOfIndividualTab -= 1;
-        if(contentIndexOfIndividualTab < 0) {
+        if (contentIndexOfIndividualTab < 0) {
             contentIndexOfIndividualTab = 0;
         }
         contentIndexOfIndividualTab %= dummyData.feeds.length;
 
         commentIndex -= 1;
-        if(commentIndex < 0) {
+        if (commentIndex < 0) {
             commentIndex = 0;
         }
         commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
 
 
-        if(isCommentSectionSelected) {
+        if (isCommentSectionSelected) {
             readOutCommentContent();
         } else {
             readOutFeedContent();
@@ -61,7 +61,7 @@ $(document).keydown(function(e) {
         commentIndex += 1;
         commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
 
-        if(isCommentSectionSelected) {
+        if (isCommentSectionSelected) {
             readOutCommentContent();
         } else {
             readOutFeedContent();
@@ -69,16 +69,16 @@ $(document).keydown(function(e) {
     }
 });
 
-function readOutFeedContent(){
+function readOutFeedContent() {
 
     $("#feed-name").text(dummyData.feeds[contentIndexOfIndividualTab].name);
     $("#feed-text").text(dummyData.feeds[contentIndexOfIndividualTab].text);
-    $("#feed-image").attr("src",dummyData.feeds[contentIndexOfIndividualTab].image);
+    $("#feed-image").attr("src", dummyData.feeds[contentIndexOfIndividualTab].image);
 
     read("This is a post from" + dummyData.feeds[contentIndexOfIndividualTab].name);
 
     var postTextContent = "";
-    for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].keywords.length; i++) {
+    for (var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].keywords.length; i++) {
         postTextContent = postTextContent + ", " + dummyData.feeds[contentIndexOfIndividualTab].keywords[i];
     }
 
@@ -88,7 +88,7 @@ function readOutFeedContent(){
     $("#feed-text-keywords").text("Post keywords are:" + postTextContent.substring(1, postTextContent.length));
 
     var imageContent = "";
-    for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
+    for (var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
         imageContent = imageContent + ", " + dummyData.feeds[contentIndexOfIndividualTab].imageLabels[i];
     }
 
@@ -96,10 +96,10 @@ function readOutFeedContent(){
     $("#feed-image-keywords").text("Image keywords are:" + imageContent.substring(1, imageContent.length));
 
     read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
-            + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
+        + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
 
     $("#feed-like-comment").text("Likes: " + dummyData.feeds[contentIndexOfIndividualTab].likes + " " + "Comments: "
-            + dummyData.feeds[contentIndexOfIndividualTab].comments.length);
+        + dummyData.feeds[contentIndexOfIndividualTab].comments.length);
 
     //var helpOptionsForFeed = "Press H for all options.";
     //read(helpOptionsForFeed);
@@ -121,27 +121,27 @@ function postOptionReader() {
     read(postEndLikeCommand);
     read(postEndCommentCommand);
     read(postEndReadCommentCommand);
-    
+
 }
 
 // ========================================
 // news feed key press handler
 // ----------------------------------------
 
-$(document).keypress(function(e) {
+$(document).keypress(function (e) {
     // do not switch option when posting comment
 
-    if(selectedTab != tabOptions.NEWSFEED) {
+    if (selectedTab != tabOptions.NEWSFEED) {
         return;
     }
 
-    if(makeCommentFlag) {
+    if (makeCommentFlag) {
         return;
     }
 
     // do not switch option when reading comments
     // except A to return back to post
-    if(isCommentSectionSelected && !(e.key == "A" || e.key == "a")) {
+    if (isCommentSectionSelected && !(e.key == "A" || e.key == "a")) {
         return;
     }
 
@@ -184,14 +184,14 @@ function likePost() {
 function selectDeselectCommentSection() {
 
     $("#feed-comment").text("");
-    if(isCommentSectionSelected){
+    if (isCommentSectionSelected) {
         read("Now you are back again in post section");
         isCommentSectionSelected = 0;
     } else {
         readAllCommentsOptions();
         isCommentSectionSelected = 1;
     }
-    
+
     loadNewsFeed();
 }
 

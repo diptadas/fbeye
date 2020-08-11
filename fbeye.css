@@ -1,4 +1,4 @@
-.container{
+.container {
     position: relative;
     top: 10%;
     height: 650px;
@@ -10,15 +10,15 @@
     box-shadow: 1px 5px 5px 5px grey;
 }
 
-.tab-bar{
+.tab-bar {
     overflow: hidden;
     padding: 10px;
     background-color: #f1f1f1;
     background-image: linear-gradient(to right, rgb(113, 113, 221), skyblue);
-    
+
 }
 
-.tab-bar button{
+.tab-bar button {
     background-color: inherit;
     width: 100%;
     border: 1px solid #ccc;
@@ -27,35 +27,35 @@
     font-weight: bold;
 }
 
-.tab-bar button:hover{
+.tab-bar button:hover {
     background-color: #ddd;
 }
 
-.tab-content{
+.tab-content {
     display: flex;
     align-items: center;
 }
 
-.tab{
+.tab {
     width: 100%;
     height: 80%;
 }
 
-.setup-step{
+.setup-step {
     width: 100%;
     height: 100%;
     margin-top: 50px;
 }
 
-.feedObject{
+.feedObject {
     text-align: justify;
     align-content: center;
 }
 
-.postImage{
+.postImage {
     width: 50%;
 }
 
-#post-text-field{
+#post-text-field {
     width: 60%;
 }

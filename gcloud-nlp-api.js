@@ -3,9 +3,9 @@ function getTextEntities(text) {
 
   var nlpRequest = {
     "document": {
-          "type": "PLAIN_TEXT",
-          "content": ""
-        }
+      "type": "PLAIN_TEXT",
+      "content": ""
+    }
   }
 
   nlpRequest.document.content = text;
