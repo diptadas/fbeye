@@ -98,6 +98,9 @@ function readOutFeedContent(){
     read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
             + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
 
+    $("#feed-like-comment").text("Likes: " + dummyData.feeds[contentIndexOfIndividualTab].likes + " " + "Comments: "
+            + dummyData.feeds[contentIndexOfIndividualTab].comments.length);
+
     //var helpOptionsForFeed = "Press H for all options.";
     //read(helpOptionsForFeed);
 
@@ -111,13 +114,13 @@ function postOptionReader() {
     var postEndLikeCommand = "Press L to like this post";
     var postEndCommentCommand = "Press C to comment on this post";
     var postEndReadCommentCommand = "Press A to read all the comments";
-    //var postEndRepeatCommand = "Press R to repeat the options";
+    var fullTextCommand = "Press R to read full post";
 
     read(postEndUpDownCommand);
     read(postEndLikeCommand);
     read(postEndCommentCommand);
     read(postEndReadCommentCommand);
-    //read(postEndRepeatCommand);
+    read(fullTextCommand);
 }
 
 // ========================================
@@ -145,7 +148,7 @@ $(document).keypress(function(e) {
         likePost();
         console.log("L Pressed");
     } else if (e.key == "R" || e.key == "r") {
-        repeatPostOptions();
+        readFullText();
         console.log("R Pressed");
     } else if (makeCommentFlag == false && (e.key == "C" || e.key == "c")) {
         makeComment();
@@ -184,8 +187,8 @@ function selectDeselectCommentSection() {
     loadNewsFeed();
 }
 
-function repeatPostOptions() {
-    postOptionReader();
+function readFullText() {
+    read(dummyData.feeds[contentIndexOfIndividualTab].text);
 }
 
 function readOutHelpOptions() {
