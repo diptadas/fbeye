@@ -1,15 +1,11 @@
 var contentIndexOfIndividualTab = 0;
 
 function loadNewsFeed() {
+    resetCommentSection();
 
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
-
-        if (isCommentSectionSelected) {
-            readOutCommentContent();
-        } else {
-            readOutFeedContent();
-            readOutHelpOptions();
-        }
+        readOutFeedContent();
+        readOutHelpOptions();
     }
 }
 
@@ -28,22 +24,20 @@ $(document).keydown(function (e) {
         console.log("UP");
         cancelRead();
 
-        contentIndexOfIndividualTab -= 1;
-        if (contentIndexOfIndividualTab < 0) {
-            contentIndexOfIndividualTab = 0;
-        }
-        contentIndexOfIndividualTab %= dummyData.feeds.length;
-
-        commentIndex -= 1;
-        if (commentIndex < 0) {
-            commentIndex = 0;
-        }
-        commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
-
-
         if (isCommentSectionSelected) {
+            commentIndex -= 1;
+            if (commentIndex < 0) {
+                commentIndex = 0;
+            }
+            commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
             readOutCommentContent();
+
         } else {
+            contentIndexOfIndividualTab -= 1;
+            if (contentIndexOfIndividualTab < 0) {
+                contentIndexOfIndividualTab = 0;
+            }
+            contentIndexOfIndividualTab %= dummyData.feeds.length;
             readOutFeedContent();
         }
     }
@@ -52,15 +46,13 @@ $(document).keydown(function (e) {
         console.log("DOWN");
         cancelRead();
 
-        contentIndexOfIndividualTab += 1;
-        contentIndexOfIndividualTab %= dummyData.feeds.length;
-
-        commentIndex += 1;
-        commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
-
         if (isCommentSectionSelected) {
+            commentIndex += 1;
+            commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
             readOutCommentContent();
         } else {
+            contentIndexOfIndividualTab += 1;
+            contentIndexOfIndividualTab %= dummyData.feeds.length;
             readOutFeedContent();
         }
     }
@@ -181,16 +173,20 @@ function likePost() {
 
 function selectDeselectCommentSection() {
 
-    $("#feed-comment").text("");
     if (isCommentSectionSelected) {
-        read("Now you are back again in post section");
         isCommentSectionSelected = 0;
+        resetCommentSection();
+        read("Now you are back again in post section");
     } else {
-        readAllCommentsOptions();
         isCommentSectionSelected = 1;
+        readAllCommentsOptions();
+        readOutCommentContent();
     }
+}
 
-    loadNewsFeed();
+function resetCommentSection() {
+    $("#feed-comment").text("");
+    commentIndex = 0;
 }
 
 function readFullText() {
