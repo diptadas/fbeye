@@ -76,7 +76,16 @@ function readOutFeedContent(){
     $("#feed-image").attr("src",dummyData.feeds[contentIndexOfIndividualTab].image);
 
     read("This is a post from" + dummyData.feeds[contentIndexOfIndividualTab].name);
-    read(dummyData.feeds[contentIndexOfIndividualTab].text);
+
+    var postTextContent = "";
+    for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].keywords.length; i++) {
+        postTextContent = postTextContent + ", " + dummyData.feeds[contentIndexOfIndividualTab].keywords[i];
+    }
+
+    //read(dummyData.feeds[contentIndexOfIndividualTab].text);
+
+    read("Post keywords are: " + postTextContent);
+
 
     var imageContent = "";
     for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
@@ -84,6 +93,10 @@ function readOutFeedContent(){
     }
 
     read("There is an image here which might contain " + imageContent);
+
+    read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
+            + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
+
 }
 
 function postOptionReader() {
@@ -113,7 +126,7 @@ $(document).keypress(function(e) {
     if(selectedTab != tabOptions.NEWSFEED) {
         return;
     }
-    
+
     if(makeCommentFlag) {
         return;
     }
