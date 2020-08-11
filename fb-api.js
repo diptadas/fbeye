@@ -45,6 +45,7 @@ function loadMyFeeds() {
         "me/feed?fields=attachments{media},message",
         function (response) {
             if (response && !response.error) {
+                console.log(response);
                 processMyFeedResponse(response);
             } else {
                 console.error(response.error);
@@ -56,11 +57,11 @@ function loadMyFeeds() {
 
 function processMyFeedResponse(response) {
     for (var key of Object.keys(response.data)) {
-        var postContent = [];
+        // populate missing fields with dummy data
+        var postContent = JSON.parse(JSON.stringify(dummyData.timeline[key]));;
 
         postContent.id = response.data[key].id;
         postContent.name = loginName;
-        postContent.imageLabels = dummyData.labels; // dummy data
 
         if (response.data[key].message) {
             postContent.text = response.data[key].message;

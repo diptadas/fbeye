@@ -53,10 +53,14 @@ $(document).keydown(function(e) {
 
 function readOutTimelineContent(){
 
+    var dateAndLocation = myFeeds[contentIndexOfIndividualTab].time + " at " + myFeeds[contentIndexOfIndividualTab].location;
+
     $("#timeline-name").text(myFeeds[contentIndexOfIndividualTab].name);
+    $("#timeline-date-location").text(dateAndLocation);
     $("#timeline-text").text(myFeeds[contentIndexOfIndividualTab].text);
     $("#timeline-image").attr("src",myFeeds[contentIndexOfIndividualTab].image);
 
+    read(dateAndLocation);
     read(myFeeds[contentIndexOfIndividualTab].text);
 
     var imageContent = "";

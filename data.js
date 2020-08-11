@@ -71,11 +71,11 @@ dummyData =
   "timeline": [
     {
       "id": 1,
-      "time": "2020-07-25T04:34:06+0000",
+      "time": "February 15, 2020",
       "name": "Daniel Garcia",
-      "text": "The shoes had been there for as long as anyone could remember.",
+      "text": "The sky still had the gray swirls of storms in the distance.",
       "image": "https://i.picsum.photos/id/1015/500/500.jpg?hmac=LNni84jXVOXdvxYPr-DoeAxRSQnnd-9Sf_-CunUKGYI",
-      "location": "Waco, TX",
+      "location": "Waco, Texas",
       "likes": 20,
       "imageLabels": [
         "rock",
@@ -83,18 +83,18 @@ dummyData =
         "water"
       ],
       "keywords": [
-        "shoe",
-        "old",
-        "long"
+        "sky",
+        "gray",
+        "storm"
       ]
     },
     {
       "id": 2,
-      "time": "2020-05-25T04:34:06+0000",
+      "time": "December 28, 2019",
       "name": "Daniel Garcia",
       "text": "Her eyebrows were a shade darker than her hair.",
       "image": "https://i.picsum.photos/id/1027/500/500.jpg?hmac=tPEylHqcbPQbHwiryAHSrV1GruWBPnj2PWwrITymdkQ",
-      "location": "Austin, TX",
+      "location": "Austin, Texas",
       "likes": 35,
       "imageLabels": [
         "girl",
