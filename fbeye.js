@@ -90,7 +90,7 @@ $("#post-tab-btn").click(function () {
 });
 
 function readLogin() {
-    read("Please login using Facebook");
+    read("Please login to continue");
 }
 
 function resetTabs() {

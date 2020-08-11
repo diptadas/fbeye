@@ -7,7 +7,7 @@ function readHomeContent() {
         document.getElementById('direction').innerHTML = "Use left and right arrow to navigate between tabs.";
     } else {
         $("#home-login").show();                 // show login section
-        document.getElementById('status').innerHTML = 'Please login using Facebook';
+        document.getElementById('status').innerHTML = 'Please login to continue';
         document.getElementById('direction').innerHTML = "";
     }
     read(document.getElementById('status').innerHTML);

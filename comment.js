@@ -26,9 +26,13 @@ function readAllCommentsOptions() {
 function makeComment() {
     // var postComment = "You have successfully made a ";
     cancelRead();
-    $("#comment-text-field").focus();
-    makeCommentFlag = true;
-    read("Write a comment and press enter to upload");
+    setTimeout(function(){
+        $("#comment-text-field").focus();
+        makeCommentFlag = true;
+        read("Write a comment and press enter to upload");
+    }, 100);
+    
+    
     $("#comment-text-field").keypress(function(event) {
         console.log(makeCommentFlag);
         if(makeCommentFlag == true){
@@ -46,21 +50,26 @@ $("#comment-button").click(function(){
 
     read($("#comment-text-field").val());
     var postText = $("#comment-text-field").val();
+    read("Press Y for uploading the comment or press N for canceling the comment");
+    $(document).keydown(function(event) {
+        console.log(event.key);
+        if(event.key == "Y" || event.key == "y"){
+            read("Your comment is uploading");
 
-    read("Your comment is uploading");
+            $("#comment-text-field").val(null);
+            $("#comment-text-field").blur();
 
-    $("#comment-text-field").val(null);
-    $("#comment-text-field").blur();
-
-    setTimeout(function(){
+            setTimeout(function(){
             beep();
             read("Your comment has been uploaded successfully");
-    }, 4000);
-    
+            }, 4000);
+            
+        }else if(event.key == "N" || event.key == "n"){
+            $("#comment-text-field").val(null);
+            $("#comment-text-field").blur();
+        }
+        
+    });    
     makeCommentFlag = false;
     
 });
-
-function giveOptionForCommentUpload() {
-    read("Press Y for uploading the comment or press N for canceling the comment");
-}
