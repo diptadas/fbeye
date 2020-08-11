@@ -45,7 +45,9 @@ $("#home-tab-btn").click(function () {
     $("#home-tab").show();
     read("home");
     readHomeContent();
+    read("type your username and press enter");
     selectedTab = tabOptions.HOME;
+    $("#username").focus();
 });
 
 $("#timeline-tab-btn").click(function () {

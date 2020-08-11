@@ -35,6 +35,7 @@ function makeComment() {
             if(event.key == "Enter"){
                 $("#comment-button").click();
             }else{
+                cancelRead();
                 read(event.key);
             }
         }
