@@ -14,6 +14,8 @@
     overflow: hidden;
     padding: 10px;
     background-color: #f1f1f1;
+    background-image: linear-gradient(to right, rgb(113, 113, 221), skyblue);
+    
 }
 
 .tab-bar button{
