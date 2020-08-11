@@ -16,20 +16,16 @@ function readHomeContent() {
 }
 
 $("#login-btn").click(function () {
-    console.log(("#username").val);
-    console.log(("#password").val);
-
-    if (typeof ("#username") !== "undefined" && typeof ("#password") !== "undefined") {
+    if (document.getElementById('username').value != "" && document.getElementById('password').value != "") {
         alreadyLoggedIn = true;
         readHomeContent();
-    }
-    else {
+    } else {
         cancelRead();
         beep();
         read("Invalid username or password. Please try again.");
         setTimeout(function () {
             $("#home-tab-btn").click();
-        }, 6000);
+        }, 5000);
 
     }
 });
@@ -43,6 +39,7 @@ $("#username").keypress(function (event) {
         read(event.key);
     }
 });
+
 $("#password").keypress(function (event) {
     if (event.key == "Enter") {
         $("#login-btn").focus();
