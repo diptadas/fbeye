@@ -42,6 +42,7 @@ function makeComment() {
 }
 
 $("#comment-button").click(function(){
+
     read($("#comment-text-field").val());
     var postText = $("#comment-text-field").val();
 
@@ -58,3 +59,7 @@ $("#comment-button").click(function(){
     makeCommentFlag = false;
     
 });
+
+function giveOptionForCommentUpload() {
+    read("Press Y for uploading the comment or press N for canceling the comment");
+}
