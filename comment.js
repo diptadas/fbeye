@@ -23,6 +23,7 @@ function readAllCommentsOptions() {
 
 }
 
+var enterPressedToPublishComment = false;
 function makeComment() {
     // var postComment = "You have successfully made a ";
     cancelRead();
@@ -51,28 +52,36 @@ $("#comment-button").click(function () {
     read($("#comment-text-field").val());
     var postText = $("#comment-text-field").val();
     read("Press Y for uploading the comment or press N for canceling the comment");
-    $(document).keydown(function (event) {
-        console.log(event.key);
-        if (event.key == "Y" || event.key == "y") {
-            read("Your comment is uploading");
+    enterPressedToPublishComment = true;
+    $("#comment-text-field").blur();
+});
 
-            $("#comment-text-field").val(null);
-            $("#comment-text-field").blur();
+$(document).keydown(function (event) {
+    console.log(event.key);
+    if (!enterPressedToPublishComment) {
+        return;
+    }
+    var btnPrs = event.key;
+    if (btnPrs == "Y" || btnPrs == "y") {
+        enterPressedToPublishComment = false;
+        cancelRead();
+        read("Your comment is uploading");
 
-            setTimeout(function () {
-                beep();
-                read("Your comment has been uploaded successfully");
-            }, 4000);
-            makeCommentFlag = false;
+        $("#comment-text-field").val(null);
+        
 
-        } else if (event.key == "N" || event.key == "n") {
-            cancelRead();
-            read("your comment has not uploaded");
-            $("#comment-text-field").val(null);
-            $("#comment-text-field").blur();
-            makeCommentFlag = false;
-        }
+        setTimeout(function () {
+            beep();
+            read("comment has been uploaded successfully");
+        }, 4000);
+        makeCommentFlag = false;
 
-    });
+    } else if (btnPrs == "N" || btnPrs == "n") {
+        enterPressedToPublishComment = false;
+        cancelRead();
+        read("your comment has not uploaded");
+        $("#comment-text-field").val(null);
+        makeCommentFlag = false;
+    }
 
 });
