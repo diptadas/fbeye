@@ -12,8 +12,7 @@ function readHomeContent() {
         document.getElementById('direction').innerHTML = "Use left and right arrow to navigate between tabs.";
 
         if (firstTimeLogin) {
-            read('Welcome ' + loginName + '!');
-            read("Developed by Dipta Das, Nurul Karim Rafi and Rofiqul Islam at Baylor University");
+            read('Welcome ' + loginName + " to Facebook assistant. This application is developed by Dipta Das, Nurul Karim Rafi and Rofiqul Islam at Baylor University");
             firstTimeLogin = false;
         }
 
