@@ -1,11 +1,18 @@
 var contentIndexOfIndividualTab = 0;
+var alreadyReadOutOptions = 0;
 
 function loadNewsFeed() {
-    resetCommentSection();
-
+    
     if (contentIndexOfIndividualTab < dummyData.feeds.length) {
-        readOutFeedContent();
-        readOutHelpOptions();
+
+        if(isCommentSectionSelected) {
+            readOutCommentContent();
+        } else {
+            readOutFeedContent();
+            if(!alreadyReadOutOptions) {
+                readOutHelpOptions();
+            }
+        }
     }
 }
 
@@ -13,10 +20,10 @@ function loadNewsFeed() {
 // up and down key press handler
 // ----------------------------------------
 
-$(document).keydown(function (e) {
-    if (selectedTab != tabOptions.NEWSFEED) {
+$(document).keydown(function(e) {
+    if(selectedTab != tabOptions.NEWSFEED) {
         return;
-    }
+    } 
 
     console.log(selectedTab);
 
@@ -24,20 +31,22 @@ $(document).keydown(function (e) {
         console.log("UP");
         cancelRead();
 
-        if (isCommentSectionSelected) {
-            commentIndex -= 1;
-            if (commentIndex < 0) {
-                commentIndex = 0;
-            }
-            commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
-            readOutCommentContent();
+        contentIndexOfIndividualTab -= 1;
+        if(contentIndexOfIndividualTab < 0) {
+            contentIndexOfIndividualTab = 0;
+        }
+        contentIndexOfIndividualTab %= dummyData.feeds.length;
 
+        commentIndex -= 1;
+        if(commentIndex < 0) {
+            commentIndex = 0;
+        }
+        commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
+
+
+        if(isCommentSectionSelected) {
+            readOutCommentContent();
         } else {
-            contentIndexOfIndividualTab -= 1;
-            if (contentIndexOfIndividualTab < 0) {
-                contentIndexOfIndividualTab = 0;
-            }
-            contentIndexOfIndividualTab %= dummyData.feeds.length;
             readOutFeedContent();
         }
     }
@@ -46,28 +55,30 @@ $(document).keydown(function (e) {
         console.log("DOWN");
         cancelRead();
 
-        if (isCommentSectionSelected) {
-            commentIndex += 1;
-            commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
+        contentIndexOfIndividualTab += 1;
+        contentIndexOfIndividualTab %= dummyData.feeds.length;
+
+        commentIndex += 1;
+        commentIndex %= dummyData.feeds[contentIndexOfIndividualTab].comments.length;
+
+        if(isCommentSectionSelected) {
             readOutCommentContent();
         } else {
-            contentIndexOfIndividualTab += 1;
-            contentIndexOfIndividualTab %= dummyData.feeds.length;
             readOutFeedContent();
         }
     }
 });
 
-function readOutFeedContent() {
+function readOutFeedContent(){
 
     $("#feed-name").text(dummyData.feeds[contentIndexOfIndividualTab].name);
     $("#feed-text").text(dummyData.feeds[contentIndexOfIndividualTab].text);
-    $("#feed-image").attr("src", dummyData.feeds[contentIndexOfIndividualTab].image);
+    $("#feed-image").attr("src",dummyData.feeds[contentIndexOfIndividualTab].image);
 
     read("This is a post from" + dummyData.feeds[contentIndexOfIndividualTab].name);
 
     var postTextContent = "";
-    for (var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].keywords.length; i++) {
+    for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].keywords.length; i++) {
         postTextContent = postTextContent + ", " + dummyData.feeds[contentIndexOfIndividualTab].keywords[i];
     }
 
@@ -77,7 +88,7 @@ function readOutFeedContent() {
     $("#feed-text-keywords").text("Post keywords are:" + postTextContent.substring(1, postTextContent.length));
 
     var imageContent = "";
-    for (var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
+    for(var i = 0; i < dummyData.feeds[contentIndexOfIndividualTab].imageLabels.length; i++) {
         imageContent = imageContent + ", " + dummyData.feeds[contentIndexOfIndividualTab].imageLabels[i];
     }
 
@@ -85,53 +96,51 @@ function readOutFeedContent() {
     $("#feed-image-keywords").text("Image keywords are:" + imageContent.substring(1, imageContent.length));
 
     read("This post contains " + dummyData.feeds[contentIndexOfIndividualTab].likes + "likes and "
-        + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
+            + dummyData.feeds[contentIndexOfIndividualTab].comments.length + "comments");
 
     $("#feed-like-comment").text("Likes: " + dummyData.feeds[contentIndexOfIndividualTab].likes + " " + "Comments: "
-        + dummyData.feeds[contentIndexOfIndividualTab].comments.length);
+            + dummyData.feeds[contentIndexOfIndividualTab].comments.length);
 
     //var helpOptionsForFeed = "Press H for all options.";
     //read(helpOptionsForFeed);
 
 }
 
-function readOutHelpOptions() {
-    read("Press H to learn about shortcuts.");
-}
-
 function postOptionReader() {
+
+    alreadyReadOutOptions = 1;
+
     var postEndUpDownCommand = "Use up and down arrow to navigate between posts";
-    var fullTextCommand = "Press R to read full post";
     var postEndLikeCommand = "Press L to like this post";
     var postEndCommentCommand = "Press C to comment on this post";
     var postEndReadCommentCommand = "Press A to read all the comments";
+    var fullTextCommand = "Press R to read full post";
 
     read(postEndUpDownCommand);
-    read(fullTextCommand);
     read(postEndLikeCommand);
     read(postEndCommentCommand);
     read(postEndReadCommentCommand);
-
+    read(fullTextCommand);
 }
 
 // ========================================
 // news feed key press handler
 // ----------------------------------------
 
-$(document).keypress(function (e) {
+$(document).keypress(function(e) {
     // do not switch option when posting comment
 
-    if (selectedTab != tabOptions.NEWSFEED) {
+    if(selectedTab != tabOptions.NEWSFEED) {
         return;
     }
 
-    if (makeCommentFlag) {
+    if(makeCommentFlag) {
         return;
     }
 
     // do not switch option when reading comments
     // except A to return back to post
-    if (isCommentSectionSelected && !(e.key == "A" || e.key == "a")) {
+    if(isCommentSectionSelected && !(e.key == "A" || e.key == "a")) {
         return;
     }
 
@@ -151,13 +160,6 @@ $(document).keypress(function (e) {
 
         postOptionReader();
         console.log("H Pressed");
-    } else if (e.key == "Y" || e.key == "y") {
-
-        read("Your comment has been uploaded successfully");
-
-    } else if (e.key == "N" || e.key == "n") {
-
-        read("Your comment has not been uploaded");
     }
 });
 
@@ -173,22 +175,22 @@ function likePost() {
 
 function selectDeselectCommentSection() {
 
-    if (isCommentSectionSelected) {
-        isCommentSectionSelected = 0;
-        resetCommentSection();
-        read("Now you are back again in post section");
-    } else {
-        isCommentSectionSelected = 1;
-        readAllCommentsOptions();
-        readOutCommentContent();
-    }
-}
-
-function resetCommentSection() {
     $("#feed-comment").text("");
-    commentIndex = 0;
+    if(isCommentSectionSelected){
+        read("Now you are back again in post section");
+        isCommentSectionSelected = 0;
+    } else {
+        readAllCommentsOptions();
+        isCommentSectionSelected = 1;
+    }
+    
+    loadNewsFeed();
 }
 
 function readFullText() {
     read(dummyData.feeds[contentIndexOfIndividualTab].text);
+}
+
+function readOutHelpOptions() {
+    read("Press H for help menu.");
 }

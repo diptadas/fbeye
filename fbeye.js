@@ -84,6 +84,7 @@ $("#post-tab-btn").click(function () {
         readLogin();
         return;
     }
+    
     resetTabs();
     $("#post-tab").show();
     read("Post");
@@ -114,3 +115,5 @@ function cancelRead() {
 function beep() {
     new Audio('http://www.soundjay.com/button/beep-07.wav').play();
 }
+
+
