@@ -1,18 +1,32 @@
 var alreadyLoggedIn = false;
+var firstTimeLogin = true;
 
 function readHomeContent() {
+    cancelRead();
+
     if (alreadyLoggedIn) {
+        document.getElementById('home-heading').innerHTML = "Home";
         $("#home-login").hide();                 // hide login section
+
         document.getElementById('status').innerHTML = 'Welcome ' + loginName + '!';
         document.getElementById('direction').innerHTML = "Use left and right arrow to navigate between tabs.";
+
+        if (firstTimeLogin) {
+            read('Welcome ' + loginName + '!');
+            read("Developed by Dipta Das, Nurul Karim Rafi and Rofiqul Islam at Baylor University");
+            firstTimeLogin = false;
+        }
+
+        read("Use left and right arrow to navigate between tabs.");
     } else {
+        document.getElementById('home-heading').innerHTML = "Login";
         $("#home-login").show();                 // show login section
+
         document.getElementById('status').innerHTML = 'Please login to continue';
         document.getElementById('direction').innerHTML = "";
+
+        read("Please login to continue");
     }
-    cancelRead();
-    read(document.getElementById('status').innerHTML);
-    read(document.getElementById('direction').innerHTML);
 }
 
 $("#login-btn").click(function () {
